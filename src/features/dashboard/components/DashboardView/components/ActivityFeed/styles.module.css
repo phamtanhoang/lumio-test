@@ -1,0 +1,12 @@
+.card {
+  @apply flex flex-col;
+}
+.content {
+  @apply flex-1;
+}
+.empty {
+  @apply py-8 text-center text-sm text-muted-foreground;
+}
+.list {
+  @apply divide-y divide-border;
+}

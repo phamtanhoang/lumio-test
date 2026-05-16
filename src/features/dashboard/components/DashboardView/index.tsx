@@ -2,14 +2,16 @@
 
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
+
 import { Skeleton } from "@/components/ui/Skeleton";
-import { useFilterStore } from "@/features/dashboard/store";
-import { isWithin, resolveTimeRange } from "@/features/dashboard/lib";
 import {
   useFilteredServers,
   useServerStats,
   useServers,
 } from "@/features/dashboard/hooks";
+import { isWithin, resolveTimeRange } from "@/features/dashboard/lib";
+import { useFilterStore } from "@/features/dashboard/store";
+
 import { DashboardSkeleton } from "../DashboardSkeleton";
 import {
   ActivityFeed,
@@ -18,13 +20,15 @@ import {
   TopBreakdown,
 } from "./components";
 
+import styles from "./styles.module.css";
+
 const ServerGlobe = dynamic(
   () => import("./components/ServerGlobe").then((m) => m.ServerGlobe),
   {
     ssr: false,
     loading: () => (
-      <div className="rounded-2xl border border-border bg-card p-6">
-        <Skeleton className="aspect-[16/10] w-full rounded-xl" />
+      <div className={styles.mapSkeleton}>
+        <Skeleton className={styles.mapSkeletonInner} />
       </div>
     ),
   }
@@ -66,7 +70,7 @@ export function DashboardView() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className={styles.root}>
       <TimeRangeFilter />
 
       <StatsOverview
@@ -81,7 +85,7 @@ export function DashboardView() {
         total={stats.total}
       />
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className={styles.breakdowns}>
         <TopBreakdown title="Top operating systems" entries={stats.topOS} />
         <TopBreakdown title="Top platforms" entries={stats.topPlatform} />
         <TopBreakdown title="Top architectures" entries={stats.topArch} />

@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+
 import { Header, Sidebar } from "@/components/layout";
 import { ThemeProvider } from "@/components/theme";
+
 import "./globals.css";
+import styles from "./layout.module.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,13 +37,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans text-foreground">
+      <body className={styles.body}>
         <ThemeProvider>
-          <div className="flex min-h-screen">
+          <div className={styles.shell}>
             <Sidebar />
-            <div className="flex min-w-0 flex-1 flex-col">
+            <div className={styles.column}>
               <Header />
-              <main className="flex-1 p-4 sm:p-6">{children}</main>
+              <main className={styles.main}>{children}</main>
             </div>
           </div>
         </ThemeProvider>

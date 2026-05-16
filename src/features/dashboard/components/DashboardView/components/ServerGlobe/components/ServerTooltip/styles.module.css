@@ -1,0 +1,39 @@
+.tooltip {
+  @apply pointer-events-none fixed z-50 w-64 rounded-lg border border-border bg-card p-3 shadow-xl text-sm text-card-foreground;
+}
+.head {
+  @apply mb-2 flex items-center justify-between gap-2;
+}
+.country {
+  @apply font-semibold;
+}
+.count {
+  @apply rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
+}
+.list {
+  @apply space-y-1.5;
+}
+.row {
+  @apply flex items-center justify-between gap-2;
+}
+.identifier {
+  @apply truncate;
+}
+.name {
+  @apply font-medium;
+}
+.ip {
+  @apply ml-1 text-muted-foreground;
+}
+.dot {
+  @apply inline-flex h-2 w-2 shrink-0 rounded-full;
+}
+.dotOnline {
+  @apply bg-success;
+}
+.dotOffline {
+  @apply bg-danger;
+}
+.more {
+  @apply text-xs text-muted-foreground;
+}

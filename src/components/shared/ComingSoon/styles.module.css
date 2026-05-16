@@ -1,0 +1,27 @@
+.wrap {
+  @apply flex min-h-[60vh] items-center justify-center px-4;
+}
+.card {
+  @apply w-full max-w-md rounded-3xl border border-border bg-card p-8 text-center shadow-sm sm:p-10;
+}
+.iconBubble {
+  @apply mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary;
+}
+.iconLg {
+  @apply h-6 w-6;
+}
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground;
+}
+.title {
+  @apply mt-2 text-2xl font-bold tracking-tight sm:text-3xl;
+}
+.description {
+  @apply mt-3 text-sm text-muted-foreground;
+}
+.backBtn {
+  @apply mt-6 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90;
+}
+.iconSm {
+  @apply h-4 w-4;
+}

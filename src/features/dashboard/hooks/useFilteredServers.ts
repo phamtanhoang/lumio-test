@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { useFilterStore } from "@/features/dashboard/store";
+
 import { isWithin, resolveTimeRange } from "@/features/dashboard/lib";
+import { useFilterStore } from "@/features/dashboard/store";
 import type {
   ActivityEvent,
   Server,

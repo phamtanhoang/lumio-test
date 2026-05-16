@@ -1,0 +1,36 @@
+.item {
+  @apply flex items-start gap-3 py-3 first:pt-0 last:pb-0;
+}
+.iconBubble {
+  @apply mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full;
+}
+.icon {
+  @apply h-4 w-4;
+}
+.body {
+  @apply min-w-0 flex-1;
+}
+.message {
+  @apply truncate text-sm font-medium;
+}
+.time {
+  @apply text-xs text-muted-foreground;
+}
+.toneCreated {
+  @apply text-success bg-success/10;
+}
+.toneRemoved {
+  @apply text-danger bg-danger/10;
+}
+.toneAliasChanged {
+  @apply text-primary bg-primary/10;
+}
+.toneStatusChanged {
+  @apply text-warning bg-warning/10;
+}
+.toneUpdated {
+  @apply text-muted-foreground bg-muted;
+}
+.toneFallback {
+  @apply text-muted-foreground bg-muted;
+}

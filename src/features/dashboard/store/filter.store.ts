@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import type { TimeRange } from "@/features/dashboard/types";
 
 interface FilterState {

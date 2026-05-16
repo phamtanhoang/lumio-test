@@ -3,7 +3,10 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/cn";
+
+import styles from "./styles.module.css";
 
 interface ThemeToggleProps {
   className?: string;
@@ -22,21 +25,16 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       type="button"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors",
-        "hover:bg-muted hover:text-foreground",
-        "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
-        className
-      )}
+      className={cn(styles.toggle, className)}
     >
       {mounted ? (
         isDark ? (
-          <Sun className="h-4 w-4" aria-hidden />
+          <Sun className={styles.icon} aria-hidden />
         ) : (
-          <Moon className="h-4 w-4" aria-hidden />
+          <Moon className={styles.icon} aria-hidden />
         )
       ) : (
-        <span className="h-4 w-4" aria-hidden />
+        <span className={styles.icon} aria-hidden />
       )}
     </button>
   );

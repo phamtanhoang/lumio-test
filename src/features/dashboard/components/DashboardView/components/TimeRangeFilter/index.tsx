@@ -2,9 +2,12 @@
 
 import { Calendar } from "lucide-react";
 import { useCallback, useState } from "react";
-import { cn } from "@/lib/cn";
+
 import { useFilterStore } from "@/features/dashboard/store";
 import type { TimeRangeKind } from "@/features/dashboard/types";
+import { cn } from "@/lib/cn";
+
+import styles from "./styles.module.css";
 
 interface Preset {
   kind: Exclude<TimeRangeKind, "custom">;
@@ -35,8 +38,8 @@ export function TimeRangeFilter() {
   }, [from, to, setTimeRange]);
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex flex-wrap items-center gap-2">
+    <div className={styles.root}>
+      <div className={styles.presetGroup}>
         {PRESETS.map(({ kind, label }) => {
           const active = timeRange.kind === kind;
           return (
@@ -48,10 +51,8 @@ export function TimeRangeFilter() {
                 setTimeRange({ kind });
               }}
               className={cn(
-                "h-9 rounded-md px-3 text-sm font-medium transition-colors",
-                active
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-border bg-card text-foreground hover:bg-muted"
+                styles.preset,
+                active ? styles.presetActive : styles.presetInactive
               )}
             >
               {label}
@@ -63,39 +64,37 @@ export function TimeRangeFilter() {
           type="button"
           onClick={() => setCustomOpen((o) => !o)}
           className={cn(
-            "inline-flex h-9 items-center gap-1.5 rounded-md px-3 text-sm font-medium transition-colors",
-            timeRange.kind === "custom"
-              ? "bg-primary text-primary-foreground"
-              : "border border-border bg-card text-foreground hover:bg-muted"
+            styles.customToggle,
+            timeRange.kind === "custom" ? styles.presetActive : styles.presetInactive
           )}
         >
-          <Calendar className="h-4 w-4" aria-hidden />
+          <Calendar className={styles.icon} aria-hidden />
           Custom
         </button>
       </div>
 
       {customOpen ? (
-        <div className="flex flex-wrap items-center gap-2">
+        <div className={styles.customForm}>
           <input
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
             aria-label="From date"
-            className="h-9 rounded-md border border-border bg-card px-2 text-sm"
+            className={styles.dateInput}
           />
-          <span className="text-muted-foreground">→</span>
+          <span className={styles.sep}>→</span>
           <input
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
             aria-label="To date"
-            className="h-9 rounded-md border border-border bg-card px-2 text-sm"
+            className={styles.dateInput}
           />
           <button
             type="button"
             disabled={!from || !to}
             onClick={handleApplyCustom}
-            className="h-9 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+            className={styles.applyBtn}
           >
             Apply
           </button>

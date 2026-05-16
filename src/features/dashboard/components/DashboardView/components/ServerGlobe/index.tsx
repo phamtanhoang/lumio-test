@@ -8,16 +8,19 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
+
 import { Card } from "@/components/ui/Card";
-import type { Server } from "@/features/dashboard/types";
 import {
   groupByLocation,
   WORLD_MAP_URL,
   type CountryEntry,
   type ServerCluster,
 } from "@/features/dashboard/lib";
-import { cn } from "@/lib/cn";
+import type { Server } from "@/features/dashboard/types";
+
 import { CountryBreakdown, ServerMarker, ServerTooltip } from "./components";
+
+import styles from "./styles.module.css";
 
 interface ServerGlobeProps {
   servers: ReadonlyArray<Server>;
@@ -68,45 +71,38 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
   );
 
   return (
-    <Card className="overflow-hidden">
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 pt-5 sm:px-6 sm:pt-6">
-        <div className="flex items-center gap-2">
-          <h2 className="text-base font-semibold tracking-tight sm:text-lg">
-            Target Demographics
-          </h2>
-          <span className="rounded-full bg-fuchsia-100 px-2 py-0.5 text-[10px] font-semibold uppercase text-fuchsia-700">
-            Beta
-          </span>
+    <Card className={styles.card}>
+      <div className={styles.head}>
+        <div className={styles.titleRow}>
+          <h2 className={styles.title}>Target Demographics</h2>
+          <span className={styles.betaBadge}>Beta</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className={styles.actions}>
           <button
             type="button"
             aria-label="Open calendar"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className={styles.iconBtn}
           >
-            <Calendar className="h-4 w-4" aria-hidden />
+            <Calendar className={styles.iconSm} aria-hidden />
           </button>
           <button
             type="button"
             aria-label="Map settings"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className={styles.iconBtn}
           >
-            <Settings2 className="h-4 w-4" aria-hidden />
+            <Settings2 className={styles.iconSm} aria-hidden />
           </button>
-          <button
-            type="button"
-            className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            <UserPlus className="h-4 w-4" aria-hidden />
+          <button type="button" className={styles.primaryBtn}>
+            <UserPlus className={styles.iconSm} aria-hidden />
             Add server
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-0 lg:grid-cols-[1.6fr_1fr]">
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-muted/40 to-background lg:aspect-auto">
-          <div className="pointer-events-none absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 text-primary shadow-sm backdrop-blur">
-            <Zap className="h-4 w-4" aria-hidden />
+      <div className={styles.body}>
+        <div className={styles.mapWrap}>
+          <div className={styles.zapBadge}>
+            <Zap className={styles.iconSm} aria-hidden />
           </div>
 
           <ComposableMap
@@ -174,34 +170,34 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
             </ZoomableGroup>
           </ComposableMap>
 
-          <div className="pointer-events-none absolute bottom-4 left-4 z-10 flex flex-wrap items-center gap-2 rounded-full bg-card/80 px-3 py-1.5 text-xs shadow-sm backdrop-blur">
+          <div className={styles.legend}>
             {REGION_LEGEND.map(({ color, label }) => (
-              <span key={label} className="inline-flex items-center gap-1.5">
-                <span className={cn("h-2 w-2 rounded-full", color)} aria-hidden />
-                <span className="text-muted-foreground">{label}</span>
+              <span key={label} className={styles.legendItem}>
+                <span className={`${styles.legendDot} ${color}`} aria-hidden />
+                <span className={styles.legendLabel}>{label}</span>
               </span>
             ))}
           </div>
 
-          <div className="absolute bottom-4 right-4 z-10 flex flex-col overflow-hidden rounded-full border border-border bg-card shadow-sm">
+          <div className={styles.zoomGroup}>
             <button
               type="button"
               aria-label="Zoom in"
               disabled={!canZoomIn}
               onClick={() => handleZoom(1)}
-              className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              className={styles.zoomBtn}
             >
-              <Plus className="h-4 w-4" aria-hidden />
+              <Plus className={styles.iconSm} aria-hidden />
             </button>
-            <div className="h-px bg-border" aria-hidden />
+            <div className={styles.zoomSep} aria-hidden />
             <button
               type="button"
               aria-label="Zoom out"
               disabled={!canZoomOut}
               onClick={() => handleZoom(-1)}
-              className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              className={styles.zoomBtn}
             >
-              <Minus className="h-4 w-4" aria-hidden />
+              <Minus className={styles.iconSm} aria-hidden />
             </button>
           </div>
 
@@ -214,7 +210,7 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
           ) : null}
         </div>
 
-        <div className="border-t border-border lg:border-l lg:border-t-0">
+        <div className={styles.countriesPanel}>
           <CountryBreakdown total={total} entries={topCountries} />
         </div>
       </div>

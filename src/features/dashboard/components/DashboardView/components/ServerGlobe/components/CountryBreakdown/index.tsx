@@ -1,11 +1,11 @@
 import { ArrowUpRight, Info } from "lucide-react";
 import Image from "next/image";
 import { memo } from "react";
-import {
-  flagUrl,
-  formatCompactNumber,
-  type CountryEntry,
-} from "@/features/dashboard/lib";
+
+import { flagUrl, type CountryEntry } from "@/features/dashboard/lib";
+import { formatCompactNumber } from "@/lib/format";
+
+import styles from "./styles.module.css";
 
 interface CountryBreakdownProps {
   total: number;
@@ -17,48 +17,44 @@ export const CountryBreakdown = memo(function CountryBreakdown({
   entries,
 }: CountryBreakdownProps) {
   return (
-    <div className="flex h-full flex-col gap-4 p-5 sm:p-6">
+    <div className={styles.root}>
       <div>
-        <div className="flex items-center gap-2">
-          <p className="text-3xl font-bold tracking-tight tabular-nums">
-            {formatCompactNumber(total)}
-          </p>
+        <div className={styles.numberRow}>
+          <p className={styles.number}>{formatCompactNumber(total)}</p>
           <button
             type="button"
             aria-label="About this metric"
-            className="text-muted-foreground hover:text-foreground"
+            className={styles.infoBtn}
           >
-            <Info className="h-4 w-4" aria-hidden />
+            <Info className={styles.iconSm} aria-hidden />
           </button>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Global servers worldwide
-        </p>
+        <p className={styles.subtitle}>Global servers worldwide</p>
       </div>
 
-      <ul className="space-y-3">
+      <ul className={styles.list}>
         {entries.map((entry) => (
-          <li key={entry.countryCode} className="space-y-1.5">
-            <div className="flex items-center justify-between gap-3 text-sm">
-              <span className="flex min-w-0 items-center gap-2.5">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-border">
+          <li key={entry.countryCode} className={styles.item}>
+            <div className={styles.row}>
+              <span className={styles.left}>
+                <span className={styles.flagBox}>
                   <Image
                     src={flagUrl(entry.countryCode)}
                     alt={`${entry.country} flag`}
                     width={36}
                     height={28}
-                    className="h-full w-full object-cover"
+                    className={styles.flagImg}
                     unoptimized
                   />
                 </span>
-                <span className="truncate font-medium">{entry.country}</span>
+                <span className={styles.country}>{entry.country}</span>
               </span>
-              <span className="shrink-0 tabular-nums text-muted-foreground">
+              <span className={styles.percent}>
                 {Math.round(entry.share * 100)}%
               </span>
             </div>
             <div
-              className="h-1.5 overflow-hidden rounded-full bg-muted"
+              className={styles.track}
               role="progressbar"
               aria-valuenow={Math.round(entry.share * 100)}
               aria-valuemin={0}
@@ -66,7 +62,7 @@ export const CountryBreakdown = memo(function CountryBreakdown({
               aria-label={`${entry.country}: ${entry.count} servers`}
             >
               <div
-                className="h-full rounded-full bg-primary transition-[width] duration-500 ease-out"
+                className={styles.bar}
                 style={{ width: `${Math.max(entry.share * 100, 6)}%` }}
               />
             </div>
@@ -74,12 +70,9 @@ export const CountryBreakdown = memo(function CountryBreakdown({
         ))}
       </ul>
 
-      <button
-        type="button"
-        className="mt-auto inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary hover:underline"
-      >
+      <button type="button" className={styles.seeAll}>
         See all regions
-        <ArrowUpRight className="h-4 w-4" aria-hidden />
+        <ArrowUpRight className={styles.iconSm} aria-hidden />
       </button>
     </div>
   );

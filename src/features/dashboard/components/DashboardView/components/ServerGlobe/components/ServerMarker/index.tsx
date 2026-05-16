@@ -1,8 +1,11 @@
 "use client";
 
-import { Marker } from "react-simple-maps";
 import type { MouseEvent } from "react";
+import { Marker } from "react-simple-maps";
+
 import type { ServerCluster } from "@/features/dashboard/lib";
+
+import styles from "./styles.module.css";
 
 interface ServerMarkerProps {
   cluster: ServerCluster;
@@ -32,13 +35,7 @@ export function ServerMarker({ cluster, onHover, onLeave }: ServerMarkerProps) {
       onMouseLeave={onLeave}
       style={{ default: { cursor: "pointer", outline: "none" } }}
     >
-      <circle
-        r={r * 1.8}
-        fill={color}
-        opacity={0.2}
-        className="animate-pulse-ring"
-        style={{ transformOrigin: "center", transformBox: "fill-box" }}
-      />
+      <circle r={r * 1.8} fill={color} opacity={0.2} className={styles.pulse} />
       <circle r={r * 1.3} fill={color} opacity={0.22} />
       <circle r={r * 0.95} fill="white" />
       <circle r={r * 0.75} fill={color} />
@@ -46,8 +43,12 @@ export function ServerMarker({ cluster, onHover, onLeave }: ServerMarkerProps) {
         <text
           textAnchor="middle"
           y={r + 14}
-          className="fill-foreground text-[10px] font-semibold"
-          style={{ paintOrder: "stroke", stroke: "hsl(var(--background))", strokeWidth: 3 }}
+          className={styles.label}
+          style={{
+            paintOrder: "stroke",
+            stroke: "hsl(var(--background))",
+            strokeWidth: 3,
+          }}
         >
           {cluster.servers.length}
         </text>

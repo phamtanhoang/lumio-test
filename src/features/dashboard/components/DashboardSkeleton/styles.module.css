@@ -1,0 +1,48 @@
+.root {
+  @apply space-y-6;
+}
+.titleSk {
+  @apply h-9 w-72;
+}
+.statsGrid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4;
+}
+.statCard {
+  @apply p-5;
+}
+.statLabel {
+  @apply mb-3 h-4 w-24;
+}
+.statValue {
+  @apply mb-3 h-8 w-20;
+}
+.statHint {
+  @apply h-3 w-32;
+}
+.cardTitle {
+  @apply h-5 w-40;
+}
+.mapGrid {
+  @apply grid grid-cols-1 gap-4 lg:grid-cols-[1.6fr_1fr];
+}
+.mapBox {
+  @apply aspect-[16/10] w-full rounded-xl;
+}
+.countriesList {
+  @apply space-y-3;
+}
+.countryRow {
+  @apply h-10 w-full;
+}
+.breakdowns {
+  @apply grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+.breakdownTitle {
+  @apply h-5 w-32;
+}
+.breakdownBody {
+  @apply space-y-3;
+}
+.breakdownRow {
+  @apply h-8 w-full;
+}

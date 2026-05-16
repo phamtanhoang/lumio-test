@@ -1,47 +1,48 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Skeleton } from "@/components/ui/Skeleton";
 
+import styles from "./styles.module.css";
 
 export function DashboardSkeleton() {
   return (
-    <div className="space-y-6">
-      <Skeleton className="h-9 w-72" />
+    <div className={styles.root}>
+      <Skeleton className={styles.titleSk} />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className={styles.statsGrid}>
         {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="p-5">
-            <Skeleton className="mb-3 h-4 w-24" />
-            <Skeleton className="mb-3 h-8 w-20" />
-            <Skeleton className="h-3 w-32" />
+          <Card key={i} className={styles.statCard}>
+            <Skeleton className={styles.statLabel} />
+            <Skeleton className={styles.statValue} />
+            <Skeleton className={styles.statHint} />
           </Card>
         ))}
       </div>
 
       <Card>
         <CardHeader>
-          <Skeleton className="h-5 w-40" />
+          <Skeleton className={styles.cardTitle} />
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.6fr_1fr]">
-            <Skeleton className="aspect-[16/10] w-full rounded-xl" />
-            <div className="space-y-3">
+          <div className={styles.mapGrid}>
+            <Skeleton className={styles.mapBox} />
+            <div className={styles.countriesList}>
               {Array.from({ length: 5 }).map((_, i) => (
-                <Skeleton key={i} className="h-10 w-full" />
+                <Skeleton key={i} className={styles.countryRow} />
               ))}
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className={styles.breakdowns}>
         {Array.from({ length: 3 }).map((_, i) => (
           <Card key={i}>
             <CardHeader>
-              <Skeleton className="h-5 w-32" />
+              <Skeleton className={styles.breakdownTitle} />
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className={styles.breakdownBody}>
               {Array.from({ length: 4 }).map((__, j) => (
-                <Skeleton key={j} className="h-8 w-full" />
+                <Skeleton key={j} className={styles.breakdownRow} />
               ))}
             </CardContent>
           </Card>

@@ -1,8 +1,10 @@
 import { DashboardSkeleton } from "@/features/dashboard/components";
 
+import styles from "./loading.module.css";
+
 export default function Loading() {
   return (
-    <div className="p-4 sm:p-6">
+    <div className={styles.wrap}>
       <DashboardSkeleton />
     </div>
   );

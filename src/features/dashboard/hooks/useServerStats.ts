@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo } from "react";
-import type { Server } from "@/features/dashboard/types";
+
 import {
   topByField,
   topCountries,
   type CountryEntry,
   type TopEntry,
 } from "@/features/dashboard/lib";
+import type { Server } from "@/features/dashboard/types";
 
 export interface ServerStats {
   total: number;

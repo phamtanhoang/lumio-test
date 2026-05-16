@@ -1,0 +1,18 @@
+.badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+.default {
+  @apply bg-primary/10 text-primary;
+}
+.success {
+  @apply bg-success/15 text-success;
+}
+.danger {
+  @apply bg-danger/15 text-danger;
+}
+.warning {
+  @apply bg-warning/15 text-warning;
+}
+.outline {
+  @apply border border-border text-muted-foreground;
+}
