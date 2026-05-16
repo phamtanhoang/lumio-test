@@ -1,4 +1,4 @@
-import { DashboardSkeleton } from "@/features/dashboard/components";
+import { DashboardSkeleton } from "@/features/dashboard";
 
 import styles from "./loading.module.css";
 
