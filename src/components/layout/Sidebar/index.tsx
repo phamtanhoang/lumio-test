@@ -55,13 +55,24 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="mt-auto flex flex-col items-center gap-3">
         <ThemeToggle className="rounded-xl border-0 bg-transparent" />
 
-        <button
-          type="button"
+        <Link
+          href="/settings"
           aria-label="Settings"
-          className="flex h-10 w-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          aria-current={
+            pathname === "/settings" || pathname.startsWith("/settings/")
+              ? "page"
+              : undefined
+          }
+          className={cn(
+            "flex h-10 w-10 items-center justify-center rounded-xl text-muted-foreground transition-colors",
+            "hover:bg-muted hover:text-foreground",
+            "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background",
+            (pathname === "/settings" || pathname.startsWith("/settings/")) &&
+              "bg-primary/10 text-primary"
+          )}
         >
           <Settings className="h-5 w-5" aria-hidden />
-        </button>
+        </Link>
 
         <div
           aria-label="Account"
