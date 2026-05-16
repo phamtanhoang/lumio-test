@@ -3,10 +3,6 @@
 import dynamic from "next/dynamic";
 
 import { Skeleton } from "@/components/ui/Skeleton";
-import { useFilteredServers } from "@/hooks/useFilteredServers";
-import { useNewServersTrend } from "@/hooks/useNewServersTrend";
-import { useServers } from "@/hooks/useServers";
-import { useServerStats } from "@/hooks/useServerStats";
 
 import { DashboardSkeleton } from "../DashboardSkeleton";
 import {
@@ -15,6 +11,12 @@ import {
   TimeRangeFilter,
   TopBreakdown,
 } from "./components";
+import {
+  useFilteredServers,
+  useNewServersTrend,
+  useServers,
+  useServerStats,
+} from "./hooks";
 
 import styles from "./styles.module.css";
 
@@ -27,7 +29,7 @@ const ServerGlobe = dynamic(
         <Skeleton className={styles.mapSkeletonInner} />
       </div>
     ),
-  }
+  },
 );
 
 export function DashboardView() {
@@ -35,7 +37,7 @@ export function DashboardView() {
   const stats = useServerStats(servers);
   const { newServers, filteredActivities } = useFilteredServers(
     servers,
-    activities
+    activities,
   );
   const newTrend = useNewServersTrend(servers, newServers.length);
 

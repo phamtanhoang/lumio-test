@@ -2,8 +2,8 @@
 
 import { Activity, Eye, Sparkles, Users } from "lucide-react";
 
-import type { TrendDelta } from "@/hooks/useNewServersTrend";
-import type { ServerStats } from "@/hooks/useServerStats";
+import type { TrendDelta } from "@/features/dashboard/DashboardView/hooks/useNewServersTrend";
+import type { ServerStats } from "@/features/dashboard/DashboardView/hooks/useServerStats";
 import { formatNumber, formatPercent } from "@/lib/format";
 
 import { StatCard, type StatCardProps } from "./components";
