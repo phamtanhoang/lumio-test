@@ -4,30 +4,3 @@
 .list {
   @apply space-y-3;
 }
-.item {
-  @apply space-y-1.5;
-}
-.row {
-  @apply flex items-center justify-between text-sm;
-}
-.label {
-  @apply flex items-center gap-2 font-medium;
-}
-.rank {
-  @apply inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold;
-}
-.rankFirst {
-  @apply bg-primary text-primary-foreground;
-}
-.rankRest {
-  @apply bg-muted text-muted-foreground;
-}
-.count {
-  @apply tabular-nums text-muted-foreground;
-}
-.track {
-  @apply h-1.5 overflow-hidden rounded-full bg-muted;
-}
-.bar {
-  @apply h-full rounded-full bg-primary transition-[width] duration-500 ease-out;
-}

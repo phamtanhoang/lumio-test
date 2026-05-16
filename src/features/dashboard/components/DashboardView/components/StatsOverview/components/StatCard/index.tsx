@@ -12,7 +12,7 @@ export interface StatTrend {
   label: string;
 }
 
-interface StatCardProps {
+export interface StatCardProps {
   label: string;
   value: ReactNode;
   hint?: string;
