@@ -35,7 +35,7 @@ const ServerGlobe = dynamic(
 export function DashboardView() {
   const { servers, activities, isLoading } = useServers();
   const stats = useServerStats(servers);
-  const { newServers, filteredActivities } = useFilteredServers(
+  const { filteredServers, newServers, filteredActivities } = useFilteredServers(
     servers,
     activities,
   );
@@ -49,6 +49,7 @@ export function DashboardView() {
 
       <StatsOverview
         stats={stats}
+        totalInRange={filteredServers.length}
         newCount={newServers.length}
         newTrend={newTrend}
       />

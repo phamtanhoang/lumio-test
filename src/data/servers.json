@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "srv-001",
+    "ip": "10.196.143.002",
+    "name": "US-NODE-001",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      -94.482,
+      38.785
+    ],
+    "createdAt": "2026-03-26T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-002",
+    "ip": "10.241.253.003",
+    "name": "US-NODE-002",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Windows Server",
+    "version": "2019",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "offline",
+    "coordinates": [
+      -94.7703,
+      39.0923
+    ],
+    "createdAt": "2026-04-25T10:00:00.000Z",
+    "updatedAt": "2026-05-09T10:00:00.000Z"
+  },
+  {
+    "id": "srv-003",
+    "ip": "10.126.170.004",
+    "name": "US-NODE-003",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Apache",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      -96.1019,
+      38.5046
+    ],
+    "createdAt": "2026-04-18T10:00:00.000Z",
+    "updatedAt": "2026-04-26T10:00:00.000Z"
+  },
+  {
+    "id": "srv-004",
+    "ip": "10.045.223.005",
+    "name": "US-NODE-004",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Apache",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -96.9951,
+      34.2811
+    ],
+    "createdAt": "2026-03-21T10:00:00.000Z",
+    "updatedAt": "2026-04-15T10:00:00.000Z"
+  },
+  {
+    "id": "srv-005",
+    "ip": "10.240.078.006",
+    "name": "US-NODE-005",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Tomcat",
+    "arch": "x86",
+    "status": "offline",
+    "coordinates": [
+      -96.1909,
+      38.7922
+    ],
+    "createdAt": "2026-05-03T10:00:00.000Z",
+    "updatedAt": "2026-05-10T10:00:00.000Z"
+  },
+  {
+    "id": "srv-006",
+    "ip": "10.039.240.007",
+    "name": "US-NODE-006",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Tomcat",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -95.3187,
+      38.8526
+    ],
+    "createdAt": "2026-04-22T10:00:00.000Z",
+    "updatedAt": "2026-05-02T10:00:00.000Z"
+  },
+  {
+    "id": "srv-007",
+    "ip": "10.118.160.008",
+    "name": "US-NODE-007",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Nginx",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      -97.5638,
+      37.055
+    ],
+    "createdAt": "2026-03-30T10:00:00.000Z",
+    "updatedAt": "2026-05-13T10:00:00.000Z"
+  },
+  {
+    "id": "srv-008",
+    "ip": "10.095.070.009",
+    "name": "US-NODE-008",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      -96.3336,
+      37.1031
+    ],
+    "createdAt": "2026-05-12T10:00:00.000Z",
+    "updatedAt": "2026-05-12T10:00:00.000Z"
+  },
+  {
+    "id": "srv-009",
+    "ip": "10.120.194.010",
+    "name": "US-NODE-009",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Nginx",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -95.9244,
+      39.1451
+    ],
+    "createdAt": "2026-05-03T10:00:00.000Z",
+    "updatedAt": "2026-05-04T10:00:00.000Z"
+  },
+  {
+    "id": "srv-010",
+    "ip": "10.075.122.011",
+    "name": "US-NODE-010",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Tomcat",
+    "arch": "x86",
+    "status": "offline",
+    "coordinates": [
+      -98.188,
+      39.1067
+    ],
+    "createdAt": "2026-05-11T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-011",
+    "ip": "10.231.145.012",
+    "name": "US-NODE-011",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Debian",
+    "version": "12",
+    "platform": "IIS",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      -97.1986,
+      38.0252
+    ],
+    "createdAt": "2026-04-11T10:00:00.000Z",
+    "updatedAt": "2026-05-07T10:00:00.000Z"
+  },
+  {
+    "id": "srv-012",
+    "ip": "10.028.202.013",
+    "name": "US-NODE-012",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      -93.919,
+      37.3819
+    ],
+    "createdAt": "2026-04-11T10:00:00.000Z",
+    "updatedAt": "2026-05-07T10:00:00.000Z"
+  },
+  {
+    "id": "srv-013",
+    "ip": "10.087.026.014",
+    "name": "US-NODE-013",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Apache",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      -94.8678,
+      38.4362
+    ],
+    "createdAt": "2026-04-17T10:00:00.000Z",
+    "updatedAt": "2026-05-04T10:00:00.000Z"
+  },
+  {
+    "id": "srv-014",
+    "ip": "10.053.218.015",
+    "name": "US-NODE-014",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      -94.7858,
+      39.5584
+    ],
+    "createdAt": "2026-04-21T10:00:00.000Z",
+    "updatedAt": "2026-04-29T10:00:00.000Z"
+  },
+  {
+    "id": "srv-015",
+    "ip": "10.190.179.016",
+    "name": "US-NODE-015",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "IIS",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -97.3025,
+      37.5633
+    ],
+    "createdAt": "2026-05-07T10:00:00.000Z",
+    "updatedAt": "2026-05-09T10:00:00.000Z"
+  },
+  {
+    "id": "srv-016",
+    "ip": "10.067.040.017",
+    "name": "US-NODE-016",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Nginx",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -95.6032,
+      39.0435
+    ],
+    "createdAt": "2026-04-08T10:00:00.000Z",
+    "updatedAt": "2026-04-12T10:00:00.000Z"
+  },
+  {
+    "id": "srv-017",
+    "ip": "10.241.203.018",
+    "name": "US-NODE-017",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "Debian",
+    "version": "12",
+    "platform": "Caddy",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -97.0952,
+      39.7027
+    ],
+    "createdAt": "2026-05-02T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-018",
+    "ip": "10.008.041.019",
+    "name": "US-NODE-018",
+    "country": "United States",
+    "countryCode": "US",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "IIS",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -96.0749,
+      37.689
+    ],
+    "createdAt": "2026-04-10T10:00:00.000Z",
+    "updatedAt": "2026-04-17T10:00:00.000Z"
+  },
+  {
+    "id": "srv-019",
+    "ip": "10.188.080.020",
+    "name": "DE-NODE-019",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      9.7559,
+      52.9885
+    ],
+    "createdAt": "2026-05-02T10:00:00.000Z",
+    "updatedAt": "2026-05-05T10:00:00.000Z"
+  },
+  {
+    "id": "srv-020",
+    "ip": "10.200.016.021",
+    "name": "DE-NODE-020",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Caddy",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      12.0232,
+      50.5181
+    ],
+    "createdAt": "2026-04-03T10:00:00.000Z",
+    "updatedAt": "2026-05-05T10:00:00.000Z"
+  },
+  {
+    "id": "srv-021",
+    "ip": "10.165.212.022",
+    "name": "DE-NODE-021",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Nginx",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      7.9139,
+      49.8193
+    ],
+    "createdAt": "2026-04-10T10:00:00.000Z",
+    "updatedAt": "2026-04-17T10:00:00.000Z"
+  },
+  {
+    "id": "srv-022",
+    "ip": "10.107.062.023",
+    "name": "DE-NODE-022",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "Apache",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      12.9095,
+      50.1513
+    ],
+    "createdAt": "2026-03-21T10:00:00.000Z",
+    "updatedAt": "2026-04-28T10:00:00.000Z"
+  },
+  {
+    "id": "srv-023",
+    "ip": "10.100.081.024",
+    "name": "DE-NODE-023",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Apache",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      12.2693,
+      53.8846
+    ],
+    "createdAt": "2026-04-14T10:00:00.000Z",
+    "updatedAt": "2026-05-13T10:00:00.000Z"
+  },
+  {
+    "id": "srv-024",
+    "ip": "10.064.097.025",
+    "name": "DE-NODE-024",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "IIS",
+    "arch": "x86",
+    "status": "offline",
+    "coordinates": [
+      12.3637,
+      49.8339
+    ],
+    "createdAt": "2026-03-28T10:00:00.000Z",
+    "updatedAt": "2026-03-29T10:00:00.000Z"
+  },
+  {
+    "id": "srv-025",
+    "ip": "10.251.154.026",
+    "name": "DE-NODE-025",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Apache",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      12.0075,
+      48.5919
+    ],
+    "createdAt": "2026-04-22T10:00:00.000Z",
+    "updatedAt": "2026-04-25T10:00:00.000Z"
+  },
+  {
+    "id": "srv-026",
+    "ip": "10.111.059.027",
+    "name": "DE-NODE-026",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Windows Server",
+    "version": "2019",
+    "platform": "IIS",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      7.7932,
+      49.8622
+    ],
+    "createdAt": "2026-04-26T10:00:00.000Z",
+    "updatedAt": "2026-04-27T10:00:00.000Z"
+  },
+  {
+    "id": "srv-027",
+    "ip": "10.131.122.028",
+    "name": "DE-NODE-027",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Tomcat",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      9.4247,
+      49.793
+    ],
+    "createdAt": "2026-03-23T10:00:00.000Z",
+    "updatedAt": "2026-04-04T10:00:00.000Z"
+  },
+  {
+    "id": "srv-028",
+    "ip": "10.024.017.029",
+    "name": "DE-NODE-028",
+    "country": "Germany",
+    "countryCode": "DE",
+    "os": "Windows Server",
+    "version": "2019",
+    "platform": "IIS",
+    "arch": "arm64",
+    "status": "offline",
+    "coordinates": [
+      11.0499,
+      52.3103
+    ],
+    "createdAt": "2026-04-27T10:00:00.000Z",
+    "updatedAt": "2026-05-01T10:00:00.000Z"
+  },
+  {
+    "id": "srv-029",
+    "ip": "10.148.120.030",
+    "name": "JP-NODE-029",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Nginx",
+    "arch": "arm64",
+    "status": "offline",
+    "coordinates": [
+      136.3949,
+      33.4909
+    ],
+    "createdAt": "2026-03-30T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-030",
+    "ip": "10.025.201.031",
+    "name": "JP-NODE-030",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      136.8967,
+      38.7366
+    ],
+    "createdAt": "2026-04-13T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-031",
+    "ip": "10.107.077.032",
+    "name": "JP-NODE-031",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Caddy",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      135.8368,
+      38.3464
+    ],
+    "createdAt": "2026-04-27T10:00:00.000Z",
+    "updatedAt": "2026-05-08T10:00:00.000Z"
+  },
+  {
+    "id": "srv-032",
+    "ip": "10.125.179.033",
+    "name": "JP-NODE-032",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Apache",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      140.4744,
+      38.6908
+    ],
+    "createdAt": "2026-04-12T10:00:00.000Z",
+    "updatedAt": "2026-04-28T10:00:00.000Z"
+  },
+  {
+    "id": "srv-033",
+    "ip": "10.172.249.034",
+    "name": "JP-NODE-033",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Nginx",
+    "arch": "arm64",
+    "status": "offline",
+    "coordinates": [
+      137.1799,
+      38.5846
+    ],
+    "createdAt": "2026-04-22T10:00:00.000Z",
+    "updatedAt": "2026-05-06T10:00:00.000Z"
+  },
+  {
+    "id": "srv-034",
+    "ip": "10.159.247.035",
+    "name": "JP-NODE-034",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Caddy",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      140.7681,
+      34.6203
+    ],
+    "createdAt": "2026-05-11T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-035",
+    "ip": "10.214.150.036",
+    "name": "JP-NODE-035",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Nginx",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      139.8317,
+      36.5017
+    ],
+    "createdAt": "2026-04-26T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-036",
+    "ip": "10.232.182.037",
+    "name": "JP-NODE-036",
+    "country": "Japan",
+    "countryCode": "JP",
+    "os": "Debian",
+    "version": "12",
+    "platform": "Caddy",
+    "arch": "arm64",
+    "status": "offline",
+    "coordinates": [
+      136.0742,
+      38.377
+    ],
+    "createdAt": "2026-05-08T10:00:00.000Z",
+    "updatedAt": "2026-05-09T10:00:00.000Z"
+  },
+  {
+    "id": "srv-037",
+    "ip": "10.095.188.038",
+    "name": "GB-NODE-037",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "Debian",
+    "version": "12",
+    "platform": "Nginx",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -2.0361,
+      55.342
+    ],
+    "createdAt": "2026-04-28T10:00:00.000Z",
+    "updatedAt": "2026-05-01T10:00:00.000Z"
+  },
+  {
+    "id": "srv-038",
+    "ip": "10.074.204.039",
+    "name": "GB-NODE-038",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "Tomcat",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      -3.2133,
+      56.0938
+    ],
+    "createdAt": "2026-03-31T10:00:00.000Z",
+    "updatedAt": "2026-04-22T10:00:00.000Z"
+  },
+  {
+    "id": "srv-039",
+    "ip": "10.119.169.040",
+    "name": "GB-NODE-039",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "Windows Server",
+    "version": "2019",
+    "platform": "Nginx",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      -4.1004,
+      55.2839
+    ],
+    "createdAt": "2026-04-22T10:00:00.000Z",
+    "updatedAt": "2026-05-10T10:00:00.000Z"
+  },
+  {
+    "id": "srv-040",
+    "ip": "10.085.070.041",
+    "name": "GB-NODE-040",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      -5.2159,
+      54.1715
+    ],
+    "createdAt": "2026-04-09T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-041",
+    "ip": "10.130.000.042",
+    "name": "GB-NODE-041",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Apache",
+    "arch": "x64",
+    "status": "offline",
+    "coordinates": [
+      -1.3005,
+      57.127
+    ],
+    "createdAt": "2026-04-15T10:00:00.000Z",
+    "updatedAt": "2026-05-13T10:00:00.000Z"
+  },
+  {
+    "id": "srv-042",
+    "ip": "10.004.125.043",
+    "name": "GB-NODE-042",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "Apache",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      -1.9839,
+      54.9652
+    ],
+    "createdAt": "2026-03-23T10:00:00.000Z",
+    "updatedAt": "2026-04-03T10:00:00.000Z"
+  },
+  {
+    "id": "srv-043",
+    "ip": "10.045.063.044",
+    "name": "FR-NODE-043",
+    "country": "France",
+    "countryCode": "FR",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Tomcat",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      5.1888,
+      45.1287
+    ],
+    "createdAt": "2026-04-05T10:00:00.000Z",
+    "updatedAt": "2026-04-05T10:00:00.000Z"
+  },
+  {
+    "id": "srv-044",
+    "ip": "10.041.219.045",
+    "name": "FR-NODE-044",
+    "country": "France",
+    "countryCode": "FR",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Caddy",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      1.5301,
+      47.6213
+    ],
+    "createdAt": "2026-04-30T10:00:00.000Z",
+    "updatedAt": "2026-05-04T10:00:00.000Z"
+  },
+  {
+    "id": "srv-045",
+    "ip": "10.056.220.046",
+    "name": "FR-NODE-045",
+    "country": "France",
+    "countryCode": "FR",
+    "os": "Alpine",
+    "version": "3.19",
+    "platform": "Caddy",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      4.3837,
+      45.441
+    ],
+    "createdAt": "2026-04-30T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-046",
+    "ip": "10.144.082.047",
+    "name": "FR-NODE-046",
+    "country": "France",
+    "countryCode": "FR",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Apache",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      3.8979,
+      44.5138
+    ],
+    "createdAt": "2026-05-04T10:00:00.000Z",
+    "updatedAt": "2026-05-04T10:00:00.000Z"
+  },
+  {
+    "id": "srv-047",
+    "ip": "10.234.011.048",
+    "name": "FR-NODE-047",
+    "country": "France",
+    "countryCode": "FR",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Caddy",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      3.9985,
+      43.8767
+    ],
+    "createdAt": "2026-04-06T10:00:00.000Z",
+    "updatedAt": "2026-04-15T10:00:00.000Z"
+  },
+  {
+    "id": "srv-048",
+    "ip": "10.192.115.049",
+    "name": "BR-NODE-048",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "offline",
+    "coordinates": [
+      -52.4075,
+      -11.4388
+    ],
+    "createdAt": "2026-05-05T10:00:00.000Z",
+    "updatedAt": "2026-05-13T10:00:00.000Z"
+  },
+  {
+    "id": "srv-049",
+    "ip": "10.042.043.050",
+    "name": "BR-NODE-049",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Nginx",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      -53.5786,
+      -13.2734
+    ],
+    "createdAt": "2026-03-28T10:00:00.000Z",
+    "updatedAt": "2026-04-17T10:00:00.000Z"
+  },
+  {
+    "id": "srv-050",
+    "ip": "10.113.055.051",
+    "name": "BR-NODE-050",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Caddy",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      -50.3854,
+      -13.7068
+    ],
+    "createdAt": "2026-04-23T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-051",
+    "ip": "10.070.234.052",
+    "name": "BR-NODE-051",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Tomcat",
+    "arch": "x86",
+    "status": "offline",
+    "coordinates": [
+      -54.4577,
+      -11.9241
+    ],
+    "createdAt": "2026-04-28T10:00:00.000Z",
+    "updatedAt": "2026-05-09T10:00:00.000Z"
+  },
+  {
+    "id": "srv-052",
+    "ip": "10.165.114.053",
+    "name": "SG-NODE-052",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Nginx",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      106.7594,
+      0.2472
+    ],
+    "createdAt": "2026-05-04T10:00:00.000Z",
+    "updatedAt": "2026-05-12T10:00:00.000Z"
+  },
+  {
+    "id": "srv-053",
+    "ip": "10.102.012.054",
+    "name": "SG-NODE-053",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "IIS",
+    "arch": "x64",
+    "status": "online",
+    "coordinates": [
+      106.3785,
+      3.3508
+    ],
+    "createdAt": "2026-05-10T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-054",
+    "ip": "10.115.237.055",
+    "name": "SG-NODE-054",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "os": "CentOS",
+    "version": "8",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      103.8433,
+      3.115
+    ],
+    "createdAt": "2026-04-27T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-055",
+    "ip": "10.172.211.056",
+    "name": "IN-NODE-055",
+    "country": "India",
+    "countryCode": "IN",
+    "os": "Windows Server",
+    "version": "2019",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      80.4419,
+      22.7055
+    ],
+    "createdAt": "2026-05-14T10:00:00.000Z",
+    "updatedAt": "2026-05-14T10:00:00.000Z"
+  },
+  {
+    "id": "srv-056",
+    "ip": "10.118.052.057",
+    "name": "IN-NODE-056",
+    "country": "India",
+    "countryCode": "IN",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Apache",
+    "arch": "arm64",
+    "status": "online",
+    "coordinates": [
+      81.8202,
+      20.6796
+    ],
+    "createdAt": "2026-04-18T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-057",
+    "ip": "10.243.040.058",
+    "name": "CA-NODE-057",
+    "country": "Canada",
+    "countryCode": "CA",
+    "os": "Windows Server",
+    "version": "2022",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      -107.1447,
+      55.2985
+    ],
+    "createdAt": "2026-03-25T10:00:00.000Z",
+    "updatedAt": "2026-03-28T10:00:00.000Z"
+  },
+  {
+    "id": "srv-058",
+    "ip": "10.233.249.059",
+    "name": "AU-NODE-058",
+    "country": "Australia",
+    "countryCode": "AU",
+    "os": "Red Hat Enterprise",
+    "version": "9.2",
+    "platform": "Caddy",
+    "arch": "x86",
+    "status": "online",
+    "coordinates": [
+      131.7388,
+      -22.6583
+    ],
+    "createdAt": "2026-03-20T10:00:00.000Z",
+    "updatedAt": "2026-03-30T10:00:00.000Z"
+  },
+  {
+    "id": "srv-059",
+    "ip": "10.074.089.060",
+    "name": "VN-NODE-059",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "os": "Ubuntu",
+    "version": "20.04 LTS",
+    "platform": "Tomcat",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      108.7097,
+      12.8394
+    ],
+    "createdAt": "2026-05-06T10:00:00.000Z",
+    "updatedAt": "2026-05-11T10:00:00.000Z"
+  },
+  {
+    "id": "srv-060",
+    "ip": "10.114.067.061",
+    "name": "ZA-NODE-060",
+    "country": "South Africa",
+    "countryCode": "ZA",
+    "os": "Ubuntu",
+    "version": "22.04 LTS",
+    "platform": "Nginx",
+    "arch": "arm",
+    "status": "online",
+    "coordinates": [
+      21.9185,
+      -32.0435
+    ],
+    "createdAt": "2026-04-08T10:00:00.000Z",
+    "updatedAt": "2026-04-11T10:00:00.000Z"
+  }
+]

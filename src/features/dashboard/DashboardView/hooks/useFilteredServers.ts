@@ -21,8 +21,12 @@ export function useFilteredServers(
 
   return useMemo(() => {
     const resolved = resolveTimeRange(timeRange);
+    const toMs = resolved.to.getTime();
     return {
-      filteredServers: [...servers],
+      // Servers existing as of `range.to` (created before/within the window).
+      filteredServers: servers.filter(
+        (s) => new Date(s.createdAt).getTime() <= toMs
+      ),
       newServers: servers.filter((s) => isWithin(s.createdAt, resolved)),
       filteredActivities: activities.filter((a) =>
         isWithin(a.timestamp, resolved)

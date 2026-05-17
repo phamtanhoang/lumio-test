@@ -12,6 +12,7 @@ import styles from "./styles.module.css";
 
 interface StatsOverviewProps {
   stats: ServerStats;
+  totalInRange: number;
   newCount: number;
   newTrend?: TrendDelta;
 }
@@ -25,6 +26,7 @@ const Icon = {
 
 function buildCards(
   stats: ServerStats,
+  totalInRange: number,
   newCount: number,
   newTrend?: TrendDelta
 ): StatCardProps[] {
@@ -33,10 +35,10 @@ function buildCards(
   return [
     {
       label: "Servers",
-      value: formatNumber(stats.total),
+      value: formatNumber(totalInRange),
       badge: { text: "Live", tone: "new" },
       icon: Icon.Servers,
-      hint: "Across all regions",
+      hint: "As of selected window",
     },
     {
       label: "Online",
@@ -76,12 +78,13 @@ function buildCards(
 
 export function StatsOverview({
   stats,
+  totalInRange,
   newCount,
   newTrend,
 }: StatsOverviewProps) {
   return (
     <section aria-label="Server statistics overview" className={styles.section}>
-      {buildCards(stats, newCount, newTrend).map((card) => (
+      {buildCards(stats, totalInRange, newCount, newTrend).map((card) => (
         <StatCard key={card.label} {...card} />
       ))}
     </section>

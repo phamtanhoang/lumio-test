@@ -1,19 +1,11 @@
-import { MOCK_ACTIVITIES, MOCK_SERVERS } from "@/data/mock-servers";
-import type {
-  ActivityEvent,
-  Server,
-} from "@/types/server.types";
-
-const ARTIFICIAL_LATENCY_MS = 250;
-
-function delay<T>(value: T, ms = ARTIFICIAL_LATENCY_MS): Promise<T> {
-  return new Promise((resolve) => setTimeout(() => resolve(value), ms));
-}
+import activities from "@/data/activities.json";
+import servers from "@/data/servers.json";
+import type { ActivityEvent, Server } from "@/types/server.types";
 
 export async function fetchServers(): Promise<Server[]> {
-  return delay([...MOCK_SERVERS]);
+  return servers as Server[];
 }
 
 export async function fetchActivities(): Promise<ActivityEvent[]> {
-  return delay([...MOCK_ACTIVITIES]);
+  return activities as ActivityEvent[];
 }
