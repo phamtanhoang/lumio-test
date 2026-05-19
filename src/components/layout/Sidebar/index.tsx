@@ -1,11 +1,15 @@
 "use client";
 
-import { Settings, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Settings,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-import { ThemeToggle } from "@/components/theme";
 import { useUiStore } from "@/store/ui.store";
 import { cn } from "@/lib/cn";
 
@@ -21,6 +25,8 @@ export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
   const mobileOpen = useUiStore((s) => s.mobileNavOpen);
   const closeMobileNav = useUiStore((s) => s.closeMobileNav);
+  const expanded = useUiStore((s) => s.sidebarExpanded);
+  const toggleSidebar = useUiStore((s) => s.toggleSidebar);
   const isSettingsActive =
     pathname === "/settings" || pathname.startsWith("/settings/");
 
@@ -37,6 +43,12 @@ export function Sidebar({ className }: SidebarProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen, closeMobileNav]);
 
+  // Mobile (always wide) and desktop-expanded share the same wide layout.
+  // Desktop-collapsed is the only variant — controlled by `collapsed` class.
+  const collapsed = !expanded;
+  const itemClass = cn(styles.navItem, collapsed && styles.navItemCollapsed);
+  const labelClass = cn(styles.navLabel, collapsed && styles.navLabelCollapsed);
+
   return (
     <>
       {mobileOpen ? (
@@ -51,10 +63,13 @@ export function Sidebar({ className }: SidebarProps) {
         className={cn(
           styles.aside,
           mobileOpen ? styles.asideOpen : styles.asideClosed,
+          collapsed && styles.asideCollapsed,
           className
         )}
       >
-        <div className={styles.brand}>
+        <div
+          className={cn(styles.brand, collapsed && styles.brandCollapsed)}
+        >
           <Link
             href="/dashboard"
             aria-label="Server Dashboard home"
@@ -62,7 +77,8 @@ export function Sidebar({ className }: SidebarProps) {
           >
             S
           </Link>
-          <span className={styles.brandName}>Lumio Studio</span>
+          <span className={labelClass}>Lumio Studio</span>
+
           <button
             type="button"
             aria-label="Close navigation"
@@ -73,7 +89,7 @@ export function Sidebar({ className }: SidebarProps) {
           </button>
         </div>
 
-        <nav className={styles.nav}>
+        <nav className={cn(styles.nav, collapsed && styles.navCollapsed)}>
           {NAV_ITEMS.map(({ icon: Icon, label, href }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);
             return (
@@ -81,37 +97,57 @@ export function Sidebar({ className }: SidebarProps) {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={cn(styles.navItem, active && styles.navItemActive)}
+                className={cn(itemClass, active && styles.navItemActive)}
               >
                 <Icon className={styles.icon} aria-hidden />
-                <span className={styles.navLabel}>{label}</span>
+                <span className={labelClass}>{label}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className={styles.bottom}>
-          <div className={styles.bottomRow}>
-            <ThemeToggle className={styles.toggleBtn} />
-            <span className={styles.navLabel}>Theme</span>
-          </div>
-
+        <div className={cn(styles.bottom, collapsed && styles.bottomCollapsed)}>
           <Link
             href="/settings"
             aria-current={isSettingsActive ? "page" : undefined}
-            className={cn(styles.navItem, isSettingsActive && styles.navItemActive)}
+            className={cn(itemClass, isSettingsActive && styles.navItemActive)}
           >
             <Settings className={styles.icon} aria-hidden />
-            <span className={styles.navLabel}>Settings</span>
+            <span className={labelClass}>Settings</span>
           </Link>
 
-          <div className={styles.profile}>
+          <Link
+            href="/profile"
+            aria-label="View profile"
+            aria-current={
+              pathname === "/profile" || pathname.startsWith("/profile/")
+                ? "page"
+                : undefined
+            }
+            className={cn(styles.profile, collapsed && styles.profileCollapsed)}
+          >
             <div className={styles.avatar}>HP</div>
-            <div className={styles.profileText}>
+            <div className={cn(styles.profileText, collapsed && styles.profileTextCollapsed)}>
               <p className={styles.profileName}>Hoàng Phạm</p>
-              <p className={styles.profileEmail}>hp@lumio.studio</p>
+              <p className={styles.profileEmail}>phamtanhoang3202@gmail.com</p>
             </div>
-          </div>
+          </Link>
+
+          <button
+            type="button"
+            aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
+            onClick={toggleSidebar}
+            className={cn(itemClass, styles.toggleBtn)}
+          >
+            {expanded ? (
+              <ChevronLeft className={styles.icon} aria-hidden />
+            ) : (
+              <ChevronRight className={styles.icon} aria-hidden />
+            )}
+            <span className={labelClass}>
+              {expanded ? "Collapse" : "Expand"}
+            </span>
+          </button>
         </div>
       </aside>
     </>

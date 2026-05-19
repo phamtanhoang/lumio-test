@@ -1,14 +1,14 @@
 .header {
-  @apply sticky top-0 z-30 flex flex-col gap-3 border-b border-border bg-background/85 px-4 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-6;
+  @apply sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-border bg-background/85 px-4 py-3 backdrop-blur sm:px-6 sm:py-4;
 }
 .titleRow {
-  @apply flex items-center gap-3;
+  @apply flex min-w-0 items-center gap-3;
 }
 .hamburger {
-  @apply flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden;
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden;
 }
 .title {
-  @apply text-xl font-bold tracking-tight sm:text-2xl;
+  @apply truncate text-base font-bold tracking-tight sm:text-xl md:text-2xl;
 }
 .actions {
   @apply flex items-center gap-2;
@@ -17,11 +17,28 @@
   @apply flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
 }
 .pillBtn {
-  @apply inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:px-3.5;
+  @apply inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted;
 }
 .pillLabel {
-  @apply hidden sm:inline;
+  @apply hidden lg:inline;
+}
+.desktopOnly {
+  @apply hidden md:inline-flex;
+}
+.themeBtn {
+  @apply rounded-full;
 }
 .btnIcon {
   @apply h-4 w-4;
+}
+
+/* ---- Mobile kebab menu ---- */
+.menuWrap {
+  @apply relative md:hidden;
+}
+.menu {
+  @apply absolute right-0 top-full z-50 mt-2 w-44 rounded-xl border border-border bg-card p-1 shadow-lg;
+}
+.menuItem {
+  @apply flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted;
 }
