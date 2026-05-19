@@ -20,22 +20,41 @@ const PRESETS: Preset[] = [
   { kind: "month", label: "Last month" },
 ];
 
+function todayYmd(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+    d.getDate()
+  ).padStart(2, "0")}`;
+}
+
+function aWeekAgoYmd(): string {
+  const d = new Date();
+  d.setDate(d.getDate() - 7);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
+    d.getDate()
+  ).padStart(2, "0")}`;
+}
+
 export function TimeRangeFilter() {
   const timeRange = useFilterStore((s) => s.timeRange);
   const setTimeRange = useFilterStore((s) => s.setTimeRange);
 
   const [customOpen, setCustomOpen] = useState(timeRange.kind === "custom");
   const [from, setFrom] = useState(
-    timeRange.kind === "custom" ? timeRange.from : ""
+    timeRange.kind === "custom" ? timeRange.from : aWeekAgoYmd()
   );
   const [to, setTo] = useState(
-    timeRange.kind === "custom" ? timeRange.to : ""
+    timeRange.kind === "custom" ? timeRange.to : todayYmd()
   );
 
   const handleApplyCustom = useCallback(() => {
     if (!from || !to) return;
     setTimeRange({ kind: "custom", from, to });
   }, [from, to, setTimeRange]);
+
+  // Custom button is "active" while the form is open OR custom is committed —
+  // so user sees feedback the instant they click it.
+  const customActive = customOpen || timeRange.kind === "custom";
 
   return (
     <div className={styles.root}>
@@ -65,7 +84,7 @@ export function TimeRangeFilter() {
           onClick={() => setCustomOpen((o) => !o)}
           className={cn(
             styles.customToggle,
-            timeRange.kind === "custom" ? styles.presetActive : styles.presetInactive
+            customActive ? styles.presetActive : styles.presetInactive
           )}
         >
           <Calendar className={styles.icon} aria-hidden />
@@ -78,6 +97,7 @@ export function TimeRangeFilter() {
           <input
             type="date"
             value={from}
+            max={to || undefined}
             onChange={(e) => setFrom(e.target.value)}
             aria-label="From date"
             className={styles.dateInput}
@@ -86,6 +106,7 @@ export function TimeRangeFilter() {
           <input
             type="date"
             value={to}
+            min={from || undefined}
             onChange={(e) => setTo(e.target.value)}
             aria-label="To date"
             className={styles.dateInput}

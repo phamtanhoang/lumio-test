@@ -12,6 +12,8 @@ export interface StatTrend {
   label: string;
 }
 
+export type StatTone = "primary" | "success" | "danger" | "beta";
+
 export interface StatCardProps {
   label: string;
   value: ReactNode;
@@ -19,11 +21,19 @@ export interface StatCardProps {
   badge?: { text: string; tone?: "new" | "beta" };
   icon?: ReactNode;
   trend?: StatTrend;
+  tone?: StatTone;
 }
 
 const BADGE_TONE: Record<NonNullable<StatCardProps["badge"]>["tone"] & string, string> = {
   new: styles.badgeNew,
   beta: styles.badgeBeta,
+};
+
+const ICON_TONE: Record<StatTone, string> = {
+  primary: styles.iconBubblePrimary,
+  success: styles.iconBubbleSuccess,
+  danger: styles.iconBubbleDanger,
+  beta: styles.iconBubbleBeta,
 };
 
 function formatTrendPercent(value: number): string {
@@ -37,6 +47,7 @@ export const StatCard = memo(function StatCard({
   badge,
   icon,
   trend,
+  tone,
 }: StatCardProps) {
   const TrendIcon = trend?.direction === "down" ? TrendingDown : TrendingUp;
   const trendTone = trend?.direction === "down" ? styles.trendDown : styles.trendUp;
@@ -74,7 +85,16 @@ export const StatCard = memo(function StatCard({
             <span className={styles.muted}>{hint}</span>
           ) : null}
         </div>
-        {icon ? <div className={styles.iconBubble}>{icon}</div> : null}
+        {icon ? (
+          <div
+            className={cn(
+              styles.iconBubble,
+              tone ? ICON_TONE[tone] : undefined
+            )}
+          >
+            {icon}
+          </div>
+        ) : null}
       </div>
     </Card>
   );

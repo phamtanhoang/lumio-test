@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 
 import { Skeleton } from "@/components/ui/Skeleton";
+import { useFilterStore } from "@/store/filter.store";
+import { formatTimeRange } from "@/lib/timeRange";
 
 import { DashboardSkeleton } from "../DashboardSkeleton";
 import {
@@ -40,6 +42,8 @@ export function DashboardView() {
     activities,
   );
   const newTrend = useNewServersTrend(servers, newServers.length);
+  const timeRange = useFilterStore((s) => s.timeRange);
+  const rangeLabel = formatTimeRange(timeRange);
 
   if (isLoading) return <DashboardSkeleton />;
 
@@ -52,6 +56,7 @@ export function DashboardView() {
         totalInRange={filteredServers.length}
         newCount={newServers.length}
         newTrend={newTrend}
+        rangeLabel={rangeLabel}
       />
 
       <ServerGlobe

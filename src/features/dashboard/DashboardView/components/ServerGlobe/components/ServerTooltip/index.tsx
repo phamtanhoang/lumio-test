@@ -7,17 +7,24 @@ interface ServerTooltipProps {
   cluster: ServerCluster;
   x: number;
   y: number;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export function ServerTooltip({ cluster, x, y }: ServerTooltipProps) {
-  const preview = cluster.servers.slice(0, 3);
-  const remaining = cluster.servers.length - preview.length;
-
+export function ServerTooltip({
+  cluster,
+  x,
+  y,
+  onMouseEnter,
+  onMouseLeave,
+}: ServerTooltipProps) {
   return (
     <div
       role="tooltip"
       style={{ left: x + 12, top: y + 12 }}
       className={styles.tooltip}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <p className={styles.head}>
         <span className={styles.country}>{cluster.country}</span>
@@ -28,7 +35,7 @@ export function ServerTooltip({ cluster, x, y }: ServerTooltipProps) {
       </p>
 
       <ul className={styles.list}>
-        {preview.map((s) => (
+        {cluster.servers.map((s) => (
           <li key={s.id} className={styles.row}>
             <span className={styles.identifier}>
               <span className={styles.name}>{s.name}</span>
@@ -43,9 +50,6 @@ export function ServerTooltip({ cluster, x, y }: ServerTooltipProps) {
             />
           </li>
         ))}
-        {remaining > 0 ? (
-          <li className={styles.more}>+{remaining} more in this region</li>
-        ) : null}
       </ul>
     </div>
   );

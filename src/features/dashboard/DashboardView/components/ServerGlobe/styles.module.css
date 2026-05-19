@@ -29,7 +29,7 @@
   @apply grid grid-cols-1 gap-0 lg:grid-cols-[1.6fr_1fr];
 }
 .mapWrap {
-  @apply relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-muted/40 to-background lg:aspect-auto;
+  @apply relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-muted/40 to-background sm:aspect-[16/10] lg:aspect-auto;
 }
 .zapBadge {
   @apply pointer-events-none absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 text-primary shadow-sm backdrop-blur;

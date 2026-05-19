@@ -18,11 +18,36 @@ export function resolveTimeRange(range: TimeRange): ResolvedRange {
     case "month":
       return { from: subMonths(now, 1), to: now };
     case "custom":
+      // Parse as LOCAL date — user picks calendar date in their timezone,
+      // not UTC. Using "T00:00:00Z" would shift +/- 7-12h on most locales,
+      // causing activity items at edges to be filtered incorrectly.
       return {
-        from: new Date(`${range.from}T00:00:00.000Z`),
-        to: new Date(`${range.to}T23:59:59.999Z`),
+        from: parseLocalDate(range.from, 0, 0, 0, 0),
+        to: parseLocalDate(range.to, 23, 59, 59, 999),
       };
   }
+}
+
+function parseLocalDate(
+  ymd: string,
+  h: number,
+  m: number,
+  s: number,
+  ms: number
+): Date {
+  const [y, mo, d] = ymd.split("-").map(Number);
+  return new Date(y, mo - 1, d, h, m, s, ms);
+}
+
+const PRESET_LABEL: Record<Exclude<TimeRange["kind"], "custom">, string> = {
+  "24h": "Last 24 hours",
+  week: "Last 7 days",
+  month: "Last 30 days",
+};
+
+export function formatTimeRange(range: TimeRange): string {
+  if (range.kind === "custom") return `${range.from} → ${range.to}`;
+  return PRESET_LABEL[range.kind];
 }
 
 export function isWithin(iso: string, range: ResolvedRange): boolean {

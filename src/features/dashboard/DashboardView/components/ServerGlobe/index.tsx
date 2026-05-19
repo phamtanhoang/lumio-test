@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, Minus, Plus, Settings2, UserPlus, Zap } from "lucide-react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -31,29 +31,45 @@ interface TooltipState {
   y: number;
 }
 
-const REGION_LEGEND = [
-  { color: "bg-violet-500", label: "Europe" },
-  { color: "bg-blue-500", label: "Asia" },
-  { color: "bg-amber-500", label: "Africa" },
-  { color: "bg-pink-500", label: "America" },
+// Marker color encodes cluster health, not region. Match what the SVG draws.
+const STATUS_LEGEND = [
+  { className: "bg-primary", label: "All online" },
+  { className: "bg-danger", label: "Has offline" },
 ];
 
 export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) {
   const clusters = useMemo(() => groupByLocation(servers), [servers]);
 
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+  // Delay close so user can move mouse into the tooltip to scroll its list
+  // without it disappearing the moment they leave the marker.
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // ZoomableGroup requires zoom + center controlled together to keep pan working.
   const [position, setPosition] = useState<{
     coordinates: [number, number];
     zoom: number;
   }>({ coordinates: [0, 20], zoom: 1 });
 
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, []);
+
   const handleHover = useCallback(
-    (cluster: ServerCluster, x: number, y: number) =>
-      setTooltip({ cluster, x, y }),
-    []
+    (cluster: ServerCluster, x: number, y: number) => {
+      cancelClose();
+      setTooltip({ cluster, x, y });
+    },
+    [cancelClose]
   );
-  const handleLeave = useCallback(() => setTooltip(null), []);
+  const handleLeave = useCallback(() => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setTooltip(null), 150);
+  }, [cancelClose]);
+  const handleTooltipLeave = useCallback(() => setTooltip(null), []);
 
   const canZoomIn = position.zoom < 3;
   const canZoomOut = position.zoom > 1;
@@ -168,9 +184,12 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
           </ComposableMap>
 
           <div className={styles.legend}>
-            {REGION_LEGEND.map(({ color, label }) => (
+            {STATUS_LEGEND.map(({ className, label }) => (
               <span key={label} className={styles.legendItem}>
-                <span className={`${styles.legendDot} ${color}`} aria-hidden />
+                <span
+                  className={`${styles.legendDot} ${className}`}
+                  aria-hidden
+                />
                 <span className={styles.legendLabel}>{label}</span>
               </span>
             ))}
@@ -203,6 +222,8 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
               cluster={tooltip.cluster}
               x={tooltip.x}
               y={tooltip.y}
+              onMouseEnter={cancelClose}
+              onMouseLeave={handleTooltipLeave}
             />
           ) : null}
         </div>

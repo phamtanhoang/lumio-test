@@ -1,5 +1,5 @@
 .tooltip {
-  @apply pointer-events-none fixed z-50 w-64 rounded-lg border border-border bg-card p-3 shadow-xl text-sm text-card-foreground;
+  @apply fixed z-50 w-64 rounded-lg border border-border bg-card p-3 shadow-xl text-sm text-card-foreground;
 }
 .head {
   @apply mb-2 flex items-center justify-between gap-2;
@@ -11,7 +11,10 @@
   @apply rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
 }
 .list {
-  @apply space-y-1.5;
+  @apply max-h-56 space-y-1.5 overflow-y-auto pr-1
+    [&::-webkit-scrollbar]:w-1
+    [&::-webkit-scrollbar-thumb]:rounded-full
+    [&::-webkit-scrollbar-thumb]:bg-border;
 }
 .row {
   @apply flex items-center justify-between gap-2;
@@ -33,7 +36,4 @@
 }
 .dotOffline {
   @apply bg-danger;
-}
-.more {
-  @apply text-xs text-muted-foreground;
 }

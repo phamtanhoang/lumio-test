@@ -55,3 +55,15 @@
 .iconBubble {
   @apply flex h-9 w-9 items-center justify-center rounded-full bg-muted text-muted-foreground;
 }
+.iconBubblePrimary {
+  @apply bg-primary/15 text-primary;
+}
+.iconBubbleSuccess {
+  @apply bg-success/15 text-success;
+}
+.iconBubbleDanger {
+  @apply bg-danger/15 text-danger;
+}
+.iconBubbleBeta {
+  @apply bg-fuchsia-100 text-fuchsia-600;
+}

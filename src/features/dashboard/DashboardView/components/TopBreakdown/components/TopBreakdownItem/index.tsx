@@ -16,28 +16,32 @@ export const TopBreakdownItem = memo(function TopBreakdownItem({
   rank,
 }: TopBreakdownItemProps) {
   const percent = Math.round(entry.share * 100);
+  const isFirst = rank === 1;
 
   return (
-    <li className={styles.item}>
+    <li className={cn(styles.item, isFirst && styles.itemFirst)}>
       <div className={styles.row}>
-        <span className={styles.label}>
-          <span
-            className={cn(styles.rank, rank === 1 ? styles.first : styles.rest)}
-          >
+        <span className={cn(styles.label, isFirst && styles.labelFirst)}>
+          <span className={cn(styles.rank, isFirst ? styles.rankFirst : styles.rankRest)}>
             {rank}
           </span>
           {entry.key}
         </span>
-        <span className={styles.count}>{formatNumber(entry.count)}</span>
+        <span className={cn(styles.count, isFirst && styles.countFirst)}>
+          {formatNumber(entry.count)}
+        </span>
       </div>
       <div
-        className={styles.track}
+        className={cn(styles.track, isFirst && styles.trackFirst)}
         role="progressbar"
         aria-valuenow={percent}
         aria-valuemin={0}
         aria-valuemax={100}
       >
-        <div className={styles.bar} style={{ width: `${percent}%` }} />
+        <div
+          className={cn(styles.bar, isFirst && styles.barFirst)}
+          style={{ width: `${percent}%` }}
+        />
       </div>
     </li>
   );

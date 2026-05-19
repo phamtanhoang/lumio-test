@@ -1,26 +1,80 @@
 .aside {
-  @apply hidden sticky top-0 h-screen w-[72px] shrink-0 flex-col items-center overflow-y-auto border-r border-border bg-card/60 py-5 backdrop-blur md:flex;
+  /* Mobile: full drawer slide-in (wide, labels visible) */
+  @apply fixed left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-auto border-r border-border bg-card px-3 py-5 shadow-2xl transition-transform duration-200 ease-out
+    md:sticky md:z-auto md:w-[72px] md:items-center md:bg-card/60 md:px-0 md:shadow-none md:backdrop-blur md:translate-x-0;
 }
-.logo {
-  @apply mb-7 flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-base font-bold italic text-background;
+.asideOpen {
+  @apply translate-x-0;
 }
+.asideClosed {
+  @apply -translate-x-full md:translate-x-0;
+}
+.backdrop {
+  @apply fixed inset-0 z-40 bg-foreground/40 backdrop-blur-sm md:hidden;
+}
+
+.brand {
+  @apply mb-6 flex items-center gap-2.5 px-2 md:mb-7 md:flex-col md:gap-0 md:px-0;
+}
+.brandLogo {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-foreground text-base font-bold italic text-background;
+}
+.brandName {
+  @apply flex-1 text-base font-semibold tracking-tight md:hidden;
+}
+.closeBtn {
+  @apply flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden;
+}
+
 .nav {
-  @apply flex flex-1 flex-col items-center gap-1.5;
+  @apply flex flex-1 flex-col gap-1 md:items-center md:gap-1.5;
 }
 .navItem {
-  @apply flex h-10 w-10 items-center justify-center rounded-xl text-muted-foreground transition-colors
+  /* Mobile: full-width row with icon + label */
+  @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors
     hover:bg-muted hover:text-foreground
-    focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background;
+    focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background
+    md:h-10 md:w-10 md:justify-center md:gap-0 md:px-0 md:py-0;
 }
 .navItemActive {
   @apply bg-primary/10 text-primary;
 }
+.navLabel {
+  /* Visible on mobile, hidden on desktop */
+  @apply md:hidden;
+}
+
 .bottom {
-  @apply mt-auto flex flex-col items-center gap-3;
+  @apply mt-auto flex flex-col gap-1 pt-4 md:items-center md:gap-3 md:pt-0;
+}
+.bottomRow {
+  @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors
+    hover:bg-muted hover:text-foreground
+    md:w-auto md:px-0 md:py-0 md:hover:bg-transparent;
+}
+.toggleBtn {
+  @apply rounded-xl border-0 bg-transparent;
+}
+
+.profile {
+  @apply mt-2 flex items-center gap-3 rounded-2xl bg-muted/50 px-2 py-2 md:mt-0 md:bg-transparent md:p-0;
 }
 .avatar {
-  @apply flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-pink-400 to-purple-500 text-sm font-semibold text-white;
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-400 to-purple-500 text-sm font-semibold text-white;
 }
+.profileText {
+  @apply min-w-0 flex-1 md:hidden;
+}
+.profileName {
+  @apply truncate text-sm font-semibold;
+}
+.profileEmail {
+  @apply truncate text-xs text-muted-foreground;
+}
+
 .icon {
-  @apply h-5 w-5;
+  @apply h-5 w-5 shrink-0;
+}
+.iconSm {
+  @apply h-4 w-4;
 }

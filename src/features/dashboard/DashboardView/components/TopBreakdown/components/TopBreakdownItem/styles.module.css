@@ -1,6 +1,9 @@
 .item {
   @apply space-y-1.5;
 }
+.itemFirst {
+  @apply rounded-xl bg-primary/5 p-2.5 -mx-2.5 ring-1 ring-primary/15;
+}
 .row {
   @apply flex items-center justify-between text-sm;
 }
@@ -10,18 +13,30 @@
 .rank {
   @apply inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold;
 }
-.first {
-  @apply bg-primary text-primary-foreground;
+.rankFirst {
+  @apply h-6 w-6 bg-gradient-to-br from-primary to-fuchsia-500 text-primary-foreground shadow-sm shadow-primary/30;
 }
-.rest {
+.rankRest {
   @apply bg-muted text-muted-foreground;
+}
+.labelFirst {
+  @apply text-base font-semibold;
 }
 .count {
   @apply tabular-nums text-muted-foreground;
 }
+.countFirst {
+  @apply text-sm font-semibold text-primary;
+}
 .track {
   @apply h-1.5 overflow-hidden rounded-full bg-muted;
 }
+.trackFirst {
+  @apply h-2;
+}
 .bar {
   @apply h-full rounded-full bg-primary transition-[width] duration-500 ease-out;
+}
+.barFirst {
+  @apply bg-gradient-to-r from-primary to-fuchsia-500;
 }
