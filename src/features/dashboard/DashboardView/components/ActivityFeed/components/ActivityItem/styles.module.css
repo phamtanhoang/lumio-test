@@ -1,20 +1,20 @@
 .item {
-  @apply flex items-start gap-3 py-3 first:pt-0 last:pb-0;
+  @apply flex items-start gap-2.5 py-2.5 first:pt-0 last:pb-0 sm:gap-3 sm:py-3;
 }
 .iconBubble {
-  @apply mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full;
+  @apply mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full sm:h-8 sm:w-8;
 }
 .icon {
-  @apply h-4 w-4;
+  @apply h-3.5 w-3.5 sm:h-4 sm:w-4;
 }
 .body {
   @apply min-w-0 flex-1;
 }
 .message {
-  @apply truncate text-sm font-medium;
+  @apply truncate text-[13px] font-medium sm:text-sm;
 }
 .time {
-  @apply text-xs text-muted-foreground;
+  @apply text-[11px] text-muted-foreground sm:text-xs;
 }
 .toneCreated {
   @apply text-success bg-success/10;

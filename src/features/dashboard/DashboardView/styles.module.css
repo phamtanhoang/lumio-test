@@ -1,12 +1,12 @@
 .root {
-  @apply space-y-6;
+  @apply space-y-4 sm:space-y-6;
 }
 .mapSkeleton {
-  @apply rounded-2xl border border-border bg-card p-6;
+  @apply rounded-2xl border border-border bg-card p-4 sm:p-6;
 }
 .mapSkeletonInner {
   @apply aspect-[16/10] w-full rounded-xl;
 }
 .breakdowns {
-  @apply grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3;
+  @apply grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3;
 }

@@ -33,7 +33,9 @@ export function useServerStats(servers: ReadonlyArray<Server>): ServerStats {
       topOS: topByField(servers, "os"),
       topPlatform: topByField(servers, "platform"),
       topArch: topByField(servers, "arch"),
-      topCountries: topCountries(servers),
+      // Surface every country so the right panel can render the default top 5
+      // and expand to "see all" without an extra hook call.
+      topCountries: topCountries(servers, Infinity),
     };
   }, [servers]);
 }

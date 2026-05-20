@@ -1,6 +1,8 @@
-import { ArrowUpRight, Info } from "lucide-react";
+"use client";
+
+import { ArrowUpRight, ChevronUp, Info } from "lucide-react";
 import Image from "next/image";
-import { memo } from "react";
+import { memo, useState } from "react";
 
 import { flagUrl } from "@/lib/config";
 import { formatCompactNumber } from "@/lib/format";
@@ -11,12 +13,18 @@ import styles from "./styles.module.css";
 interface CountryBreakdownProps {
   total: number;
   entries: ReadonlyArray<CountryEntry>;
+  initialLimit?: number;
 }
 
 export const CountryBreakdown = memo(function CountryBreakdown({
   total,
   entries,
+  initialLimit = 5,
 }: CountryBreakdownProps) {
+  const [expanded, setExpanded] = useState(false);
+  const hasMore = entries.length > initialLimit;
+  const visible = expanded || !hasMore ? entries : entries.slice(0, initialLimit);
+
   return (
     <div className={styles.root}>
       <div>
@@ -34,7 +42,7 @@ export const CountryBreakdown = memo(function CountryBreakdown({
       </div>
 
       <ul className={styles.list}>
-        {entries.map((entry) => (
+        {visible.map((entry) => (
           <li key={entry.countryCode} className={styles.item}>
             <div className={styles.row}>
               <span className={styles.left}>
@@ -71,10 +79,26 @@ export const CountryBreakdown = memo(function CountryBreakdown({
         ))}
       </ul>
 
-      <button type="button" className={styles.seeAll}>
-        See all regions
-        <ArrowUpRight className={styles.iconSm} aria-hidden />
-      </button>
+      {hasMore ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className={styles.seeAll}
+        >
+          {expanded ? (
+            <>
+              Show less
+              <ChevronUp className={styles.iconSm} aria-hidden />
+            </>
+          ) : (
+            <>
+              See all regions ({entries.length})
+              <ArrowUpRight className={styles.iconSm} aria-hidden />
+            </>
+          )}
+        </button>
+      ) : null}
     </div>
   );
 });

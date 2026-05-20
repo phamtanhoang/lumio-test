@@ -1,5 +1,48 @@
 .root {
-  @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+  @apply w-full;
+}
+
+/* ---- Mobile (< md): dropdown ---- */
+.mobile {
+  @apply relative md:hidden;
+}
+.trigger {
+  @apply inline-flex h-9 max-w-full items-center gap-2 rounded-full border border-border bg-card px-3.5 text-sm font-medium text-foreground transition-colors hover:bg-muted;
+}
+.triggerLabel {
+  @apply truncate;
+}
+.chev {
+  @apply h-4 w-4 shrink-0 text-muted-foreground transition-transform;
+}
+.chevOpen {
+  @apply rotate-180;
+}
+.popover {
+  @apply absolute left-0 top-full z-40 mt-2 w-[min(20rem,calc(100vw-2rem))] rounded-xl border border-border bg-card p-2 shadow-xl;
+}
+.options {
+  @apply flex flex-col gap-0.5;
+}
+.option {
+  @apply flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left text-sm font-medium text-foreground transition-colors hover:bg-muted;
+}
+.optionActive {
+  @apply bg-primary/10 text-primary;
+}
+.customForm {
+  @apply mt-2 flex flex-wrap items-center gap-1.5 border-t border-border pt-2;
+}
+.dateInput {
+  @apply h-9 min-w-0 flex-1 rounded-md border border-border bg-card px-2 text-xs;
+}
+.applyBtn {
+  @apply h-9 w-full rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50;
+}
+
+/* ---- Desktop (≥ md): single-row layout — presets left, date form right ---- */
+.desktop {
+  @apply hidden md:flex md:flex-wrap md:items-center md:gap-3;
 }
 .presetGroup {
   @apply flex flex-wrap items-center gap-2;
@@ -14,20 +57,23 @@
   @apply border border-border bg-card text-foreground hover:bg-muted;
 }
 .customToggle {
-  @apply inline-flex h-9 items-center gap-1.5 rounded-md px-3 text-sm font-medium transition-colors;
+  @apply inline-flex h-9 items-center gap-1.5 rounded-md px-3 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60;
 }
-.icon {
-  @apply h-4 w-4;
+.customFormDesktop {
+  /* `ml-auto` shoves the date form to the trailing edge so presets stay left. */
+  @apply ml-auto flex flex-wrap items-center gap-2;
 }
-.customForm {
-  @apply flex flex-wrap items-center gap-2;
-}
-.dateInput {
+.dateInputDesktop {
   @apply h-9 rounded-md border border-border bg-card px-2 text-sm;
+}
+.applyBtnDesktop {
+  @apply h-9 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50;
+}
+
+/* ---- Shared ---- */
+.icon {
+  @apply h-4 w-4 shrink-0;
 }
 .sep {
   @apply text-muted-foreground;
-}
-.applyBtn {
-  @apply h-9 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50;
 }

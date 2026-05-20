@@ -11,6 +11,7 @@ interface ServerMarkerProps {
   cluster: ServerCluster;
   onHover: (cluster: ServerCluster, x: number, y: number) => void;
   onLeave: () => void;
+  onSelect: (cluster: ServerCluster, x: number, y: number) => void;
 }
 
 function clusterRadius(count: number): number {
@@ -18,7 +19,12 @@ function clusterRadius(count: number): number {
   return Math.min(base + Math.sqrt(count) * 1.5, 12);
 }
 
-export function ServerMarker({ cluster, onHover, onLeave }: ServerMarkerProps) {
+export function ServerMarker({
+  cluster,
+  onHover,
+  onLeave,
+  onSelect,
+}: ServerMarkerProps) {
   const r = clusterRadius(cluster.servers.length);
   const hasOffline = cluster.servers.some((s) => s.status === "offline");
   const color = hasOffline ? "hsl(var(--danger))" : "hsl(var(--primary))";
@@ -33,6 +39,10 @@ export function ServerMarker({ cluster, onHover, onLeave }: ServerMarkerProps) {
         onHover(cluster, e.clientX, e.clientY)
       }
       onMouseLeave={onLeave}
+      onClick={(e: MouseEvent<SVGGElement>) => {
+        e.stopPropagation();
+        onSelect(cluster, e.clientX, e.clientY);
+      }}
       style={{ default: { cursor: "pointer", outline: "none" } }}
     >
       <circle r={r * 1.8} fill={color} opacity={0.2} className={styles.pulse} />

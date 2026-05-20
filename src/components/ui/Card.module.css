@@ -2,14 +2,14 @@
   @apply rounded-2xl border border-border bg-card text-card-foreground shadow-sm;
 }
 .header {
-  @apply flex flex-col gap-1.5 p-5 sm:p-6 sm:pb-3;
+  @apply flex flex-col gap-1 p-4 pb-2 sm:gap-1.5 sm:p-6 sm:pb-3;
 }
 .title {
-  @apply text-base font-semibold leading-none tracking-tight sm:text-lg;
+  @apply text-sm font-semibold leading-none tracking-tight sm:text-lg;
 }
 .description {
-  @apply text-sm text-muted-foreground;
+  @apply text-xs text-muted-foreground sm:text-sm;
 }
 .content {
-  @apply p-5 pt-0 sm:p-6 sm:pt-0;
+  @apply p-4 pt-0 sm:p-6 sm:pt-0;
 }

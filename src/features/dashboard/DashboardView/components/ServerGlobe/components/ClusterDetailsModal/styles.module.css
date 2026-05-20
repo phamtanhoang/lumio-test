@@ -1,0 +1,93 @@
+.backdrop {
+  @apply fixed inset-0 z-[60] flex items-end justify-center bg-foreground/40 backdrop-blur-sm sm:items-center sm:p-6;
+}
+.modal {
+  /* Full-bleed bottom-sheet on mobile; centered dialog on sm+. */
+  @apply flex max-h-[90vh] w-full max-w-xl flex-col overflow-hidden rounded-t-2xl border border-border bg-card shadow-2xl sm:max-h-[85vh] sm:rounded-2xl;
+}
+.grabber {
+  @apply mx-auto mt-2 h-1 w-10 shrink-0 rounded-full bg-border sm:hidden;
+}
+.head {
+  @apply sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-card p-4 sm:p-5;
+}
+.flagBox {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-border;
+}
+.flagImg {
+  @apply h-full w-full object-cover;
+}
+.titleBlock {
+  @apply min-w-0 flex-1;
+}
+.title {
+  @apply truncate text-base font-semibold tracking-tight sm:text-lg;
+}
+.subtitle {
+  @apply truncate text-xs text-muted-foreground sm:text-sm;
+}
+.online {
+  @apply text-success;
+}
+.offline {
+  @apply text-danger;
+}
+.closeBtn {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
+}
+.closeIcon {
+  @apply h-4 w-4;
+}
+
+.list {
+  @apply flex-1 divide-y divide-border overflow-y-auto
+    [&::-webkit-scrollbar]:w-1.5
+    [&::-webkit-scrollbar-thumb]:rounded-full
+    [&::-webkit-scrollbar-thumb]:bg-border;
+}
+.row {
+  @apply p-4 sm:p-5;
+}
+.rowHead {
+  @apply flex items-center justify-between gap-2;
+}
+.name {
+  @apply truncate text-sm font-semibold;
+}
+.statusBadge {
+  @apply inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium capitalize;
+}
+.statusOnline {
+  @apply bg-success/10 text-success;
+}
+.statusOffline {
+  @apply bg-danger/10 text-danger;
+}
+.statusDot {
+  @apply h-1.5 w-1.5 rounded-full;
+}
+.statusDotOnline {
+  @apply bg-success;
+}
+.statusDotOffline {
+  @apply bg-danger;
+}
+
+/* Single-column key:value rows on mobile (label left, value right) —
+   stops the labels stacking on top of values in a cramped 2-col grid.
+   Switches to a 2-col block layout once there's real horizontal space. */
+.meta {
+  @apply mt-3 flex flex-col gap-1.5 text-xs sm:grid sm:grid-cols-2 sm:gap-x-4 sm:gap-y-2;
+}
+.metaItem {
+  @apply flex min-w-0 items-baseline justify-between gap-3 sm:block;
+}
+.metaItem dt {
+  @apply shrink-0 text-[10px] uppercase tracking-wide text-muted-foreground;
+}
+.metaItem dd {
+  @apply min-w-0 truncate text-right text-foreground sm:mt-0.5 sm:text-left;
+}
+.mono {
+  @apply font-mono;
+}

@@ -1,4 +1,4 @@
-import { MoreVertical, TrendingDown, TrendingUp } from "lucide-react";
+import { TrendingDown, TrendingUp } from "lucide-react";
 import { memo, type ReactNode } from "react";
 
 import { Card } from "@/components/ui/Card";
@@ -63,37 +63,29 @@ export const StatCard = memo(function StatCard({
             </span>
           ) : null}
         </div>
-        <button type="button" aria-label="More options" className={styles.moreBtn}>
-          <MoreVertical className={styles.iconSm} aria-hidden />
-        </button>
+        {icon ? (
+          <div
+            className={cn(styles.iconBubble, tone ? ICON_TONE[tone] : undefined)}
+          >
+            {icon}
+          </div>
+        ) : null}
       </div>
 
       <p className={styles.value}>{value}</p>
 
       <div className={styles.footer}>
-        <div className={styles.footerText}>
-          {trend ? (
-            <span className={styles.trendWrap}>
-              <TrendIcon className={cn(styles.trendIcon, trendTone)} aria-hidden />
-              <span className={cn(styles.trendValue, trendTone)}>
-                {trend.direction === "down" ? "−" : "+"}
-                {formatTrendPercent(trend.value)}%
-              </span>
-              <span className={styles.muted}>{trend.label}</span>
+        {trend ? (
+          <span className={styles.trendWrap}>
+            <TrendIcon className={cn(styles.trendIcon, trendTone)} aria-hidden />
+            <span className={cn(styles.trendValue, trendTone)}>
+              {trend.direction === "down" ? "−" : "+"}
+              {formatTrendPercent(trend.value)}%
             </span>
-          ) : hint ? (
-            <span className={styles.muted}>{hint}</span>
-          ) : null}
-        </div>
-        {icon ? (
-          <div
-            className={cn(
-              styles.iconBubble,
-              tone ? ICON_TONE[tone] : undefined
-            )}
-          >
-            {icon}
-          </div>
+            <span className={styles.muted}>{trend.label}</span>
+          </span>
+        ) : hint ? (
+          <span className={styles.muted}>{hint}</span>
         ) : null}
       </div>
     </Card>

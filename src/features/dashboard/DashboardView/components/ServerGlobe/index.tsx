@@ -11,11 +11,17 @@ import {
 
 import { Card } from "@/components/ui/Card";
 import { WORLD_MAP_URL } from "@/lib/config";
+import { countryCodeToIsoNumeric } from "@/lib/countryIso";
 import { groupByLocation, type ServerCluster } from "@/lib/groupByLocation";
 import type { CountryEntry } from "@/lib/topCountries";
 import type { Server } from "@/types/server.types";
 
-import { CountryBreakdown, ServerMarker, ServerTooltip } from "./components";
+import {
+  ClusterDetailsModal,
+  CountryBreakdown,
+  ServerMarker,
+  ServerTooltip,
+} from "./components";
 
 import styles from "./styles.module.css";
 
@@ -31,18 +37,32 @@ interface TooltipState {
   y: number;
 }
 
-// Marker color encodes cluster health, not region. Match what the SVG draws.
-const STATUS_LEGEND = [
+// Map legend keys to swatches drawn on the SVG so the side-panel country list
+// has a visible counterpart on the map itself.
+const MAP_LEGEND = [
+  { className: "bg-primary/30 ring-1 ring-primary/40", label: "Active region" },
   { className: "bg-primary", label: "All online" },
   { className: "bg-danger", label: "Has offline" },
 ];
 
 export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) {
   const clusters = useMemo(() => groupByLocation(servers), [servers]);
+  // Active country ids (ISO numeric, zero-padded — matches world-atlas@2 geo.id).
+  const activeGeoIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const s of servers) {
+      const id = countryCodeToIsoNumeric(s.countryCode);
+      if (id) ids.add(id);
+    }
+    return ids;
+  }, [servers]);
 
+  // Hover state — quick peek. Closes on mouseleave.
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
-  // Delay close so user can move mouse into the tooltip to scroll its list
-  // without it disappearing the moment they leave the marker.
+  // Click state — opens a full modal with all server details.
+  const [selected, setSelected] = useState<ServerCluster | null>(null);
+  // Delay close so user can move mouse into the tooltip without it disappearing
+  // the moment they leave the marker.
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ZoomableGroup requires zoom + center controlled together to keep pan working.
@@ -70,6 +90,11 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
     closeTimer.current = setTimeout(() => setTooltip(null), 150);
   }, [cancelClose]);
   const handleTooltipLeave = useCallback(() => setTooltip(null), []);
+  const handleSelect = useCallback((cluster: ServerCluster) => {
+    setTooltip(null);
+    setSelected(cluster);
+  }, []);
+  const closeModal = useCallback(() => setSelected(null), []);
 
   const canZoomIn = position.zoom < 3;
   const canZoomOut = position.zoom > 1;
@@ -124,7 +149,9 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
             height={520}
             style={{ width: "100%", height: "100%" }}
           >
-            {/* Pattern as Geography fill = countries rendered as dot stipple, oceans stay blank. */}
+            {/* Pattern as Geography fill = countries rendered as dot stipple, oceans stay blank.
+                `dotsActive` paints countries that host servers in the primary tint so the
+                right-side country list has a visible counterpart on the map. */}
             <defs>
               <pattern
                 id="dots"
@@ -137,6 +164,24 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
                   cy="2.5"
                   r="0.9"
                   style={{ fill: "hsl(var(--muted-foreground))", opacity: 0.45 }}
+                />
+              </pattern>
+              <pattern
+                id="dotsActive"
+                width="5"
+                height="5"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  width="5"
+                  height="5"
+                  style={{ fill: "hsl(var(--primary))", opacity: 0.18 }}
+                />
+                <circle
+                  cx="2.5"
+                  cy="2.5"
+                  r="1"
+                  style={{ fill: "hsl(var(--primary))", opacity: 0.85 }}
                 />
               </pattern>
             </defs>
@@ -155,20 +200,26 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
             >
               <Geographies geography={WORLD_MAP_URL}>
                 {({ geographies }) =>
-                  geographies.map((geo) => (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill="url(#dots)"
-                      stroke="transparent"
-                      strokeWidth={0}
-                      style={{
-                        default: { outline: "none" },
-                        hover: { outline: "none", fill: "url(#dots)" },
-                        pressed: { outline: "none" },
-                      }}
-                    />
-                  ))
+                  geographies.map((geo) => {
+                    const active = activeGeoIds.has(String(geo.id));
+                    const fill = active ? "url(#dotsActive)" : "url(#dots)";
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill={fill}
+                        stroke={
+                          active ? "hsl(var(--primary) / 0.5)" : "transparent"
+                        }
+                        strokeWidth={active ? 0.4 : 0}
+                        style={{
+                          default: { outline: "none" },
+                          hover: { outline: "none", fill },
+                          pressed: { outline: "none" },
+                        }}
+                      />
+                    );
+                  })
                 }
               </Geographies>
 
@@ -178,13 +229,14 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
                   cluster={cluster}
                   onHover={handleHover}
                   onLeave={handleLeave}
+                  onSelect={handleSelect}
                 />
               ))}
             </ZoomableGroup>
           </ComposableMap>
 
           <div className={styles.legend}>
-            {STATUS_LEGEND.map(({ className, label }) => (
+            {MAP_LEGEND.map(({ className, label }) => (
               <span key={label} className={styles.legendItem}>
                 <span
                   className={`${styles.legendDot} ${className}`}
@@ -217,7 +269,7 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
             </button>
           </div>
 
-          {tooltip ? (
+          {tooltip && !selected ? (
             <ServerTooltip
               cluster={tooltip.cluster}
               x={tooltip.x}
@@ -232,6 +284,10 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
           <CountryBreakdown total={total} entries={topCountries} />
         </div>
       </div>
+
+      {selected ? (
+        <ClusterDetailsModal cluster={selected} onClose={closeModal} />
+      ) : null}
     </Card>
   );
 }

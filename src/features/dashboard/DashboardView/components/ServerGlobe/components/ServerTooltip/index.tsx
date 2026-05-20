@@ -11,6 +11,8 @@ interface ServerTooltipProps {
   onMouseLeave?: () => void;
 }
 
+const PREVIEW_LIMIT = 3;
+
 export function ServerTooltip({
   cluster,
   x,
@@ -18,6 +20,9 @@ export function ServerTooltip({
   onMouseEnter,
   onMouseLeave,
 }: ServerTooltipProps) {
+  const preview = cluster.servers.slice(0, PREVIEW_LIMIT);
+  const remaining = cluster.servers.length - preview.length;
+
   return (
     <div
       role="tooltip"
@@ -35,7 +40,7 @@ export function ServerTooltip({
       </p>
 
       <ul className={styles.list}>
-        {cluster.servers.map((s) => (
+        {preview.map((s) => (
           <li key={s.id} className={styles.row}>
             <span className={styles.identifier}>
               <span className={styles.name}>{s.name}</span>
@@ -51,6 +56,11 @@ export function ServerTooltip({
           </li>
         ))}
       </ul>
+
+      <p className={styles.hint}>
+        {remaining > 0 ? `+${remaining} more · ` : null}
+        Click for details
+      </p>
     </div>
   );
 }

@@ -2,19 +2,25 @@
   @apply fixed z-50 w-64 rounded-lg border border-border bg-card p-3 shadow-xl text-sm text-card-foreground;
 }
 .head {
-  @apply mb-2 flex items-center justify-between gap-2;
+  @apply mb-2 flex items-center gap-2;
 }
 .country {
-  @apply font-semibold;
+  @apply flex-1 truncate font-semibold;
 }
 .count {
-  @apply rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
+  @apply shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
+}
+.closeBtn {
+  @apply -mr-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground;
+}
+.closeIcon {
+  @apply h-3.5 w-3.5;
 }
 .list {
-  @apply max-h-56 space-y-1.5 overflow-y-auto pr-1
-    [&::-webkit-scrollbar]:w-1
-    [&::-webkit-scrollbar-thumb]:rounded-full
-    [&::-webkit-scrollbar-thumb]:bg-border;
+  @apply space-y-1.5;
+}
+.hint {
+  @apply mt-2 border-t border-border pt-2 text-[11px] font-medium text-primary;
 }
 .row {
   @apply flex items-center justify-between gap-2;

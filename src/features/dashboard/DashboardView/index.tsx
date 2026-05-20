@@ -36,11 +36,14 @@ const ServerGlobe = dynamic(
 
 export function DashboardView() {
   const { servers, activities, isLoading } = useServers();
-  const stats = useServerStats(servers);
   const { filteredServers, newServers, filteredActivities } = useFilteredServers(
     servers,
     activities,
   );
+  // Every panel reads the same filtered window so the dashboard is consistent.
+  // `useNewServersTrend` still needs the raw set so it can compare the current
+  // window against the previous one.
+  const stats = useServerStats(filteredServers);
   const newTrend = useNewServersTrend(servers, newServers.length);
   const timeRange = useFilterStore((s) => s.timeRange);
   const rangeLabel = formatTimeRange(timeRange);
@@ -60,7 +63,7 @@ export function DashboardView() {
       />
 
       <ServerGlobe
-        servers={servers}
+        servers={filteredServers}
         topCountries={stats.topCountries}
         total={stats.total}
       />
