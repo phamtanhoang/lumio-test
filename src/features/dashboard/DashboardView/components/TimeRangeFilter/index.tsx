@@ -15,6 +15,9 @@ interface Preset {
   label: string;
 }
 
+// "Last week" / "Last month" map to the previous calendar week (Mon–Sun) and
+// previous calendar month respectively — see `resolveTimeRange`. "Last 24
+// hours" stays a rolling 24-hour window because it has no calendar equivalent.
 const PRESETS: Preset[] = [
   { kind: "24h", label: "Last 24 hours" },
   { kind: "week", label: "Last week" },
