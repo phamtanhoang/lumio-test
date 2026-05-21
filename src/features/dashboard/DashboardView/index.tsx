@@ -15,6 +15,7 @@ import {
 } from "./components";
 import {
   useFilteredServers,
+  useNewSeries,
   useNewServersTrend,
   useServers,
   useServerStats,
@@ -45,6 +46,7 @@ export function DashboardView() {
   // window against the previous one.
   const stats = useServerStats(filteredServers);
   const newTrend = useNewServersTrend(servers, newServers.length);
+  const newSeries = useNewSeries(servers);
   const timeRange = useFilterStore((s) => s.timeRange);
   const rangeLabel = formatTimeRange(timeRange);
 
@@ -59,6 +61,7 @@ export function DashboardView() {
         totalInRange={filteredServers.length}
         newCount={newServers.length}
         newTrend={newTrend}
+        newSeries={newSeries}
         rangeLabel={rangeLabel}
       />
 
@@ -73,16 +76,19 @@ export function DashboardView() {
           title="Top operating systems"
           description="Operating systems ranked by number of servers in the selected window."
           entries={stats.topOS}
+          total={stats.total}
         />
         <TopBreakdown
           title="Top platforms"
           description="Web platforms (Nginx, Apache…) ranked by usage in the selected window."
           entries={stats.topPlatform}
+          total={stats.total}
         />
         <TopBreakdown
           title="Top architectures"
           description="CPU architectures (x64, arm64…) ranked by server count in the selected window."
           entries={stats.topArch}
+          total={stats.total}
         />
       </div>
 

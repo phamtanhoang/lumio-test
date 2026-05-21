@@ -35,8 +35,21 @@
 .badge {
   @apply rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase;
 }
+/* `relative` + the `::before` pulse below give the LIVE badge a subtle
+   heartbeat so the "real-time" claim isn't just static text. */
 .badgeNew {
-  @apply bg-emerald-100 text-emerald-700;
+  @apply relative inline-flex items-center gap-1 bg-emerald-100 text-emerald-700;
+}
+.badgeNew::before {
+  content: "";
+  @apply inline-block h-1.5 w-1.5 rounded-full bg-emerald-500;
+  box-shadow: 0 0 0 0 hsl(142 76% 46% / 0.7);
+  animation: live-pulse 1.6s ease-out infinite;
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 hsl(142 76% 46% / 0.6); }
+  70% { box-shadow: 0 0 0 6px hsl(142 76% 46% / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(142 76% 46% / 0); }
 }
 .badgeBeta {
   @apply bg-fuchsia-100 text-fuchsia-600;

@@ -4,6 +4,10 @@
 .icon {
   @apply h-4 w-4;
 }
-.ringText {
+/* Ring center labels — tone-specific so the % matches its bar color. */
+.ringTextSuccess {
   @apply text-[10px] font-semibold text-success;
+}
+.ringTextDanger {
+  @apply text-[10px] font-semibold text-danger;
 }

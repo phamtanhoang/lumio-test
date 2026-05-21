@@ -12,20 +12,33 @@ interface TopBreakdownItemProps {
   rank: number;
 }
 
+// Per-rank style maps. Top 3 ranks use the primary hue with stepping
+// opacity (darker → lighter). Rank 4+ falls back to a neutral grey.
+const RANK_CHIP = [
+  styles.rankFirst,
+  styles.rankSecond,
+  styles.rankThird,
+];
+const RANK_BAR = [
+  styles.barFirst,
+  styles.barSecond,
+  styles.barThird,
+];
+
 export const TopBreakdownItem = memo(function TopBreakdownItem({
   entry,
   rank,
 }: TopBreakdownItemProps) {
   const percent = Math.round(entry.share * 100);
   const isFirst = rank === 1;
+  const chipClass = RANK_CHIP[rank - 1] ?? styles.rankRest;
+  const barClass = RANK_BAR[rank - 1] ?? styles.barRest;
 
   return (
     <li className={cn(styles.item, isFirst && styles.itemFirst)}>
       <div className={styles.row}>
         <span className={cn(styles.label, isFirst && styles.labelFirst)}>
-          <span className={cn(styles.rank, isFirst ? styles.rankFirst : styles.rankRest)}>
-            {rank}
-          </span>
+          <span className={cn(styles.rank, chipClass)}>{rank}</span>
           {entry.key}
         </span>
         <Tooltip
@@ -45,10 +58,7 @@ export const TopBreakdownItem = memo(function TopBreakdownItem({
         aria-valuemin={0}
         aria-valuemax={100}
       >
-        <div
-          className={cn(styles.bar, isFirst && styles.barFirst)}
-          style={{ width: `${percent}%` }}
-        />
+        <div className={cn(styles.bar, barClass)} style={{ width: `${percent}%` }} />
       </div>
     </li>
   );

@@ -1,9 +1,67 @@
+.card {
+  @apply flex flex-col;
+}
 .titleRow {
   @apply flex items-center gap-2;
+}
+.content {
+  @apply flex flex-col gap-4;
 }
 .empty {
   @apply text-sm text-muted-foreground;
 }
+
+/* ---- Donut + leader summary row ---- */
+.donutRow {
+  @apply flex items-center gap-4 rounded-xl bg-gradient-to-br from-muted/40 to-transparent p-3;
+}
+.donutTotal {
+  @apply text-xl font-bold leading-none tracking-tight tabular-nums;
+}
+.donutHint {
+  @apply mt-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground;
+}
+.leadBlock {
+  @apply min-w-0 flex-1;
+}
+.leadEyebrow {
+  @apply text-[10px] font-semibold uppercase tracking-wider text-muted-foreground;
+}
+.leadKey {
+  @apply mt-0.5 truncate text-base font-semibold text-foreground;
+}
+.leadStat {
+  @apply mt-1 flex items-center gap-1.5 text-sm font-semibold tabular-nums text-foreground;
+}
+.leadSep {
+  @apply text-muted-foreground;
+}
+.leadPercent {
+  @apply text-muted-foreground;
+}
+
 .list {
   @apply space-y-3;
+}
+
+/* ---- Donut segment colors ----
+   Top 3 use primary hue with stepping opacity (darker → lighter), rank 4+
+   fades into the neutral track. Donut paints via `currentColor` so we set
+   the text-* utility here. */
+.donutFirst {
+  @apply text-primary;
+}
+.donutSecond {
+  @apply text-primary/70;
+}
+.donutThird {
+  @apply text-primary/30;
+}
+.donutRest {
+  @apply text-muted-foreground/25;
+}
+/* "Other" wedge for entries not in the visible top-N — keeps the donut
+   representative of the full fleet without cluttering the list. */
+.donutOther {
+  @apply text-muted-foreground/30;
 }
