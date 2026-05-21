@@ -77,18 +77,21 @@ export function DashboardView() {
           description="Operating systems ranked by number of servers in the selected window."
           entries={stats.topOS}
           total={stats.total}
+          theme="primary"
         />
         <TopBreakdown
           title="Top platforms"
           description="Web platforms (Nginx, Apache…) ranked by usage in the selected window."
           entries={stats.topPlatform}
           total={stats.total}
+          theme="emerald"
         />
         <TopBreakdown
           title="Top architectures"
           description="CPU architectures (x64, arm64…) ranked by server count in the selected window."
           entries={stats.topArch}
           total={stats.total}
+          theme="amber"
         />
       </div>
 

@@ -4,12 +4,21 @@ import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Donut } from "@/components/ui/Donut";
 import { InfoIcon } from "@/components/ui/InfoIcon";
+import { cn } from "@/lib/cn";
 import { formatPercent } from "@/lib/format";
 import { type TopEntry } from "@/lib/topByField";
 
 import { TopBreakdownItem } from "./components";
 
 import styles from "./styles.module.css";
+
+export type TopBreakdownTheme = "primary" | "emerald" | "amber";
+
+const THEME_CLASS: Record<TopBreakdownTheme, string> = {
+  primary: styles.themePrimary,
+  emerald: styles.themeEmerald,
+  amber: styles.themeAmber,
+};
 
 // Top 3 donut segments share the primary hue with stepping opacity (darker
 // → lighter). Rank 4+ uses a muted grey so they read as "the long tail".
@@ -26,6 +35,9 @@ interface TopBreakdownProps {
   // separately to draw the donut against the whole population (and surface a
   // muted "Other" wedge for the long tail).
   total: number;
+  // Theme picks the accent palette (purple / green / amber). Each card on the
+  // dashboard gets its own theme so they read as distinct sections.
+  theme?: TopBreakdownTheme;
   description?: string;
   emptyLabel?: string;
 }
@@ -34,6 +46,7 @@ export const TopBreakdown = memo(function TopBreakdown({
   title,
   entries,
   total,
+  theme = "primary",
   description,
   emptyLabel = "No data",
 }: TopBreakdownProps) {
@@ -56,7 +69,7 @@ export const TopBreakdown = memo(function TopBreakdown({
   const top = entries[0];
 
   return (
-    <Card className={styles.card}>
+    <Card className={cn(styles.card, THEME_CLASS[theme])}>
       <CardHeader>
         <div className={styles.titleRow}>
           <CardTitle>{title}</CardTitle>

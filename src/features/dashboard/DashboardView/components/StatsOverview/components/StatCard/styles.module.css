@@ -1,7 +1,7 @@
 .card {
-  /* `overflow-visible` so the tooltip popover can escape the card boundary.
-     Rounded corners on background still clip without `overflow-hidden`. */
-  @apply relative flex flex-col p-3.5 sm:p-5;
+  /* `overflow-hidden` so the top accent bar follows the card's rounded
+     corners. Tooltips render via React portal so they escape this clipping. */
+  @apply relative flex flex-col overflow-hidden p-3.5 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md sm:p-5;
 }
 /* Tonal gradient backgrounds give each card a distinct accent so the four
    metrics feel less uniform — addresses "giao diện đơn điệu" feedback. */
@@ -16,6 +16,25 @@
 }
 .cardBeta {
   @apply bg-gradient-to-br from-fuchsia-200/40 via-card to-card;
+}
+
+/* Thin colored bar at the top of each toned card — clipped by the card's
+   `overflow-hidden` so it follows the rounded top corners naturally. */
+.card::before {
+  content: "";
+  @apply pointer-events-none absolute inset-x-0 top-0 h-[3px] opacity-0 transition-opacity;
+}
+.cardPrimary::before {
+  @apply bg-gradient-to-r from-primary to-fuchsia-500 opacity-100;
+}
+.cardSuccess::before {
+  @apply bg-success opacity-100;
+}
+.cardDanger::before {
+  @apply bg-danger opacity-100;
+}
+.cardBeta::before {
+  @apply bg-fuchsia-400 opacity-100;
 }
 .infoBtn {
   @apply inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground;

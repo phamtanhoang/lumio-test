@@ -1,6 +1,51 @@
 .card {
-  @apply flex flex-col;
+  /* Top accent bar (gradient via theme vars) + hover lift matches the visual
+     language used by the stat cards above. */
+  @apply relative flex flex-col overflow-hidden transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md;
 }
+.card::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--accent-h) var(--accent-s) var(--accent-l)),
+    hsl(var(--accent-to-h) var(--accent-to-s) var(--accent-to-l))
+  );
+}
+
+/* ---- Themes ----
+   Each theme just sets a "from" color (used for stepping opacity) and a "to"
+   color (used as the bright tip of rank-1 gradients). Children consume them
+   via CSS variables, so all the rank chips / bars / donut wedges below
+   automatically pick up the right tone. */
+.themePrimary {
+  --accent-h: 250;
+  --accent-s: 84%;
+  --accent-l: 60%;
+  --accent-to-h: 292;
+  --accent-to-s: 84%;
+  --accent-to-l: 61%;
+}
+.themeEmerald {
+  --accent-h: 160;
+  --accent-s: 84%;
+  --accent-l: 39%;
+  --accent-to-h: 173;
+  --accent-to-s: 80%;
+  --accent-to-l: 40%;
+}
+.themeAmber {
+  --accent-h: 32;
+  --accent-s: 95%;
+  --accent-l: 50%;
+  --accent-to-h: 12;
+  --accent-to-s: 95%;
+  --accent-to-l: 55%;
+}
+
 .titleRow {
   @apply flex items-center gap-2;
 }
@@ -44,24 +89,19 @@
   @apply space-y-3;
 }
 
-/* ---- Donut segment colors ----
-   Top 3 use primary hue with stepping opacity (darker → lighter), rank 4+
-   fades into the neutral track. Donut paints via `currentColor` so we set
-   the text-* utility here. */
+/* ---- Donut segment colors via theme vars ---- */
 .donutFirst {
-  @apply text-primary;
+  color: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
 }
 .donutSecond {
-  @apply text-primary/70;
+  color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.7);
 }
 .donutThird {
-  @apply text-primary/30;
+  color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.3);
 }
 .donutRest {
   @apply text-muted-foreground/25;
 }
-/* "Other" wedge for entries not in the visible top-N — keeps the donut
-   representative of the full fleet without cluttering the list. */
 .donutOther {
   @apply text-muted-foreground/30;
 }
