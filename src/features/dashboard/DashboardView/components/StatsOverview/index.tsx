@@ -51,7 +51,14 @@ function buildCards(
       badge: { text: "Live", tone: "new" },
       icon: Icon.Servers,
       tone: "primary",
-      hint: `as of ${rangeLabel}`,
+      // Mobile drops the "as of" prefix to fit the date range in a narrow
+      // card; desktop keeps the full natural-language phrase.
+      hint: (
+        <>
+          <span className="hidden sm:inline">as of </span>
+          {rangeLabel}
+        </>
+      ),
     },
     {
       label: "Online",
@@ -130,7 +137,14 @@ function buildCards(
       ),
       ...(newTrend
         ? { trend: { ...newTrend, label: "vs prior window" } }
-        : { hint: `created in ${rangeLabel}` }),
+        : {
+            hint: (
+              <>
+                <span className="hidden sm:inline">created in </span>
+                {rangeLabel}
+              </>
+            ),
+          }),
     },
   ];
 }

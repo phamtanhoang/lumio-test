@@ -18,7 +18,7 @@ export type StatTone = "primary" | "success" | "danger" | "beta";
 export interface StatCardProps {
   label: string;
   value: ReactNode;
-  hint?: string;
+  hint?: ReactNode;
   // Concise "what is this section" line shown on the (i) icon next to the
   // label. No numbers — keep it descriptive only.
   description?: string;
@@ -72,6 +72,31 @@ export const StatCard = memo(function StatCard({
   const TrendIcon = trend?.direction === "down" ? TrendingDown : TrendingUp;
   const trendTone = trend?.direction === "down" ? styles.trendDown : styles.trendUp;
 
+  // Icon visual (default bubble vs custom slot like CircleProgress / Sparkline)
+  // is rendered twice with responsive visibility — desktop keeps it at the
+  // top-right of the head row, mobile drops it down beside the value so the
+  // label row has space for the (i) icon at the top-right instead.
+  const iconNode =
+    iconSlot ?? (icon ? (
+      <div
+        className={cn(styles.iconBubble, tone ? ICON_TONE[tone] : undefined)}
+      >
+        {icon}
+      </div>
+    ) : null);
+
+  const infoNode = description ? (
+    <Tooltip content={description} position="bottom">
+      <button
+        type="button"
+        aria-label={`About ${label}`}
+        className={styles.infoBtn}
+      >
+        <Info className={styles.infoIcon} aria-hidden />
+      </button>
+    </Tooltip>
+  ) : null;
+
   return (
     <Card className={cn(styles.card, tone ? CARD_TONE[tone] : undefined)}>
       <div className={styles.head}>
@@ -82,36 +107,36 @@ export const StatCard = memo(function StatCard({
               {badge.text}
             </span>
           ) : null}
-          {description ? (
-            <Tooltip content={description} position="bottom">
-              <button
-                type="button"
-                aria-label={`About ${label}`}
-                className={styles.infoBtn}
-              >
-                <Info className={styles.infoIcon} aria-hidden />
-              </button>
-            </Tooltip>
+          {/* Desktop: (i) sits inline next to the label/badge. */}
+          {infoNode ? (
+            <span className={styles.infoSlotDesktop}>{infoNode}</span>
           ) : null}
         </div>
-        {iconSlot ?? (icon ? (
-          <div
-            className={cn(styles.iconBubble, tone ? ICON_TONE[tone] : undefined)}
-          >
-            {icon}
-          </div>
-        ) : null)}
+        {/* Mobile: (i) goes to the top-right slot where the icon used to live. */}
+        {infoNode ? (
+          <span className={styles.infoSlotMobile}>{infoNode}</span>
+        ) : null}
+        {/* Desktop: icon visual (bubble / ring / sparkline) on the right of head. */}
+        {iconNode ? (
+          <div className={styles.iconSlotDesktop}>{iconNode}</div>
+        ) : null}
       </div>
 
-      <p className={styles.value}>
-        {valueTooltip ? (
-          <Tooltip content={valueTooltip}>
-            <span>{value}</span>
-          </Tooltip>
-        ) : (
-          value
-        )}
-      </p>
+      <div className={styles.valueRow}>
+        <p className={styles.value}>
+          {valueTooltip ? (
+            <Tooltip content={valueTooltip}>
+              <span>{value}</span>
+            </Tooltip>
+          ) : (
+            value
+          )}
+        </p>
+        {/* Mobile: icon visual is rendered here instead, beside the number. */}
+        {iconNode ? (
+          <div className={styles.iconSlotMobile}>{iconNode}</div>
+        ) : null}
+      </div>
 
       <div className={styles.footer}>
         {trend ? (

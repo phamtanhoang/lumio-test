@@ -36,6 +36,16 @@
 .cardBeta::before {
   @apply bg-fuchsia-400 opacity-100;
 }
+/* Two slots for the (i) icon:
+   - Desktop: lives inline at the end of the label row (next to badge).
+   - Mobile: lives at the top-right of the head, swapped with the icon visual
+     which moves down beside the value on mobile. */
+.infoSlotDesktop {
+  @apply hidden sm:inline-flex;
+}
+.infoSlotMobile {
+  @apply inline-flex sm:hidden;
+}
 .infoBtn {
   @apply inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground;
 }
@@ -73,11 +83,29 @@
 .badgeBeta {
   @apply bg-fuchsia-100 text-fuchsia-600;
 }
+/* Mobile: value + icon visual sit side-by-side on the same row so the icon
+   slot moves down from the head. Desktop: only the value renders here, the
+   icon stays in the head row above. */
+.valueRow {
+  @apply mt-2 flex items-center justify-between gap-3 sm:mt-3;
+}
 .value {
-  @apply mt-2 text-2xl font-bold tracking-tight tabular-nums sm:mt-3 sm:text-3xl;
+  @apply text-2xl font-bold tracking-tight tabular-nums sm:text-3xl;
+}
+/* Icon visual slots — desktop at top-right of head, mobile beside the value. */
+.iconSlotDesktop {
+  @apply hidden sm:flex;
+}
+.iconSlotMobile {
+  @apply flex sm:hidden;
 }
 .footer {
   @apply mt-2 min-h-[1.25rem] sm:mt-3;
+}
+/* Sparkline (72px wide) is too wide for some narrow mobile cards beside the
+   number — let it shrink. */
+.iconSlotMobile > * {
+  @apply shrink-0;
 }
 .trendWrap {
   @apply inline-flex items-center gap-1 text-[11px] sm:text-xs;

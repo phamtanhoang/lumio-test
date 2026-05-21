@@ -15,9 +15,16 @@ interface TooltipProps {
   className?: string;
 }
 
+// Matches the tooltip's Tailwind `w-64`. Used by the viewport-clamp math
+// below so the popover never spills off-screen on narrow phones.
+const TOOLTIP_WIDTH = 256;
+const VIEWPORT_MARGIN = 8;
+
 // Lightweight popover that shows on hover/focus. Renders into `document.body`
 // via a portal with `position: fixed` so the tooltip is never clipped by an
 // ancestor's `overflow: hidden` / `overflow-y: auto` (eg. a scrollable list).
+// Horizontal position is clamped to the viewport so it stays fully visible
+// even when the trigger is near a screen edge.
 export function Tooltip({
   content,
   children,
@@ -41,23 +48,21 @@ export function Tooltip({
     const el = triggerRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    let left: number;
-    if (align === "start") left = rect.left;
-    else if (align === "end") left = rect.right;
-    else left = rect.left + rect.width / 2;
+
+    // Compute the desired LEFT EDGE of the tooltip (post-alignment).
+    let desiredLeft: number;
+    if (align === "start") desiredLeft = rect.left;
+    else if (align === "end") desiredLeft = rect.right - TOOLTIP_WIDTH;
+    else desiredLeft = rect.left + rect.width / 2 - TOOLTIP_WIDTH / 2;
+
+    // Clamp into the viewport so the popover stays fully visible.
+    const maxLeft =
+      window.innerWidth - TOOLTIP_WIDTH - VIEWPORT_MARGIN;
+    const left = Math.max(VIEWPORT_MARGIN, Math.min(maxLeft, desiredLeft));
+
     const top = position === "top" ? rect.top - 8 : rect.bottom + 8;
     setCoords({ top, left });
   }, [open, position, align]);
-
-  // Compose the transform once based on the requested alignment / side.
-  const xTransform =
-    align === "center"
-      ? "translateX(-50%)"
-      : align === "end"
-        ? "translateX(-100%)"
-        : "";
-  const yTransform = position === "top" ? "translateY(-100%)" : "";
-  const transform = `${xTransform} ${yTransform}`.trim() || undefined;
 
   return (
     <>
@@ -79,7 +84,10 @@ export function Tooltip({
                 position: "fixed",
                 top: coords.top,
                 left: coords.left,
-                transform,
+                // No horizontal transform — `left` is already the tooltip's
+                // left edge (clamped). Only flip vertically for "top" position.
+                transform:
+                  position === "top" ? "translateY(-100%)" : undefined,
               }}
               className="pointer-events-none z-[100] w-64 whitespace-normal rounded-lg bg-foreground px-3 py-2 text-xs font-medium leading-relaxed text-background shadow-xl"
             >

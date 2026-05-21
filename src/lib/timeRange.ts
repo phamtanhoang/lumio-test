@@ -78,7 +78,13 @@ const PRESET_LABEL: Record<Exclude<TimeRange["kind"], "custom">, string> = {
 };
 
 export function formatTimeRange(range: TimeRange): string {
-  if (range.kind === "custom") return `${range.from} → ${range.to}`;
+  if (range.kind === "custom") {
+    // Single-day custom range collapses to one date so the label doesn't say
+    // "2026-05-21 → 2026-05-21" — saves space, esp. on mobile cards.
+    return range.from === range.to
+      ? range.from
+      : `${range.from} → ${range.to}`;
+  }
   return PRESET_LABEL[range.kind];
 }
 
