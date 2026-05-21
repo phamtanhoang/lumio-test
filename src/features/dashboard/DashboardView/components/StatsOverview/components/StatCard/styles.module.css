@@ -100,7 +100,10 @@
   @apply flex sm:hidden;
 }
 .footer {
-  @apply mt-2 min-h-[1.25rem] sm:mt-3;
+  /* `mt-auto` keeps the footer pinned to the bottom of the card so when the
+     parent grid stretches cards to a common height, the extra space lands
+     between value and footer (not below the footer). */
+  @apply mt-auto min-h-[1.25rem] pt-2 sm:pt-3;
 }
 /* Sparkline (72px wide) is too wide for some narrow mobile cards beside the
    number — let it shrink. */

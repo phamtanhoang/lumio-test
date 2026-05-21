@@ -1,5 +1,8 @@
 .section {
-  @apply grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4;
+  /* `auto-rows-fr` forces every row in the grid to be the same height as the
+     tallest, so the four cards always line up — no jagged edge when one card
+     has a longer hint than another. */
+  @apply grid auto-rows-fr grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4;
 }
 .icon {
   @apply h-4 w-4;
