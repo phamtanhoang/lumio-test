@@ -4,3 +4,6 @@
 .icon {
   @apply h-4 w-4;
 }
+.ringText {
+  @apply text-[10px] font-semibold text-success;
+}

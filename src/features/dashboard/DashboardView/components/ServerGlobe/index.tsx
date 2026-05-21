@@ -10,6 +10,7 @@ import {
 } from "react-simple-maps";
 
 import { Card } from "@/components/ui/Card";
+import { InfoIcon } from "@/components/ui/InfoIcon";
 import { WORLD_MAP_URL } from "@/lib/config";
 import { countryCodeToIsoNumeric } from "@/lib/countryIso";
 import { groupByLocation, type ServerCluster } from "@/lib/groupByLocation";
@@ -114,6 +115,7 @@ export function ServerGlobe({ servers, topCountries, total }: ServerGlobeProps) 
         <div className={styles.titleRow}>
           <h2 className={styles.title}>Target Demographics</h2>
           <span className={styles.betaBadge}>Beta</span>
+          <InfoIcon content="World map of server clusters in the selected window. Marker color = cluster health (purple = all online, red = has offline). Click a marker for full details. Right panel ranks countries by server share." />
         </div>
         <div className={styles.actions}>
           <button

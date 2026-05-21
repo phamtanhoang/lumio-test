@@ -7,9 +7,6 @@
 .number {
   @apply text-2xl font-bold tracking-tight tabular-nums sm:text-3xl;
 }
-.infoBtn {
-  @apply text-muted-foreground hover:text-foreground;
-}
 .iconSm {
   @apply h-4 w-4;
 }

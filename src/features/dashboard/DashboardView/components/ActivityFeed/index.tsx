@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { InfoIcon } from "@/components/ui/InfoIcon";
 import { ScrollArea } from "@/components/ui/ScrollArea";
 import type { ActivityEvent } from "@/types/server.types";
 
@@ -20,7 +21,13 @@ export function ActivityFeed({ events }: ActivityFeedProps) {
   return (
     <Card className={styles.card}>
       <CardHeader>
-        <CardTitle>Recent activity</CardTitle>
+        <div className={styles.titleRow}>
+          <CardTitle>Recent activity</CardTitle>
+          <InfoIcon
+            position="top"
+            content="Timeline of fleet events (created / removed / status changed / updated). Filtered by the selected time window."
+          />
+        </div>
         <CardDescription>
           Last events recorded across your fleet within the selected window.
         </CardDescription>

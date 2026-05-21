@@ -10,8 +10,13 @@
 .body {
   @apply min-w-0 flex-1;
 }
+/* Tooltip's outer span is `inline-flex` — override to block so the message
+   inside can take full width and truncate properly. */
+.messageWrap {
+  @apply !block min-w-0 max-w-full;
+}
 .message {
-  @apply truncate text-[13px] font-medium sm:text-sm;
+  @apply block truncate text-[13px] font-medium sm:text-sm;
 }
 .time {
   @apply text-[11px] text-muted-foreground sm:text-xs;

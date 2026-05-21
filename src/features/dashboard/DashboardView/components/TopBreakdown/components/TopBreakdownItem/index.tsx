@@ -1,5 +1,6 @@
 import { memo } from "react";
 
+import { Tooltip } from "@/components/ui/Tooltip";
 import { cn } from "@/lib/cn";
 import { formatNumber } from "@/lib/format";
 import type { TopEntry } from "@/lib/topByField";
@@ -27,9 +28,15 @@ export const TopBreakdownItem = memo(function TopBreakdownItem({
           </span>
           {entry.key}
         </span>
-        <span className={cn(styles.count, isFirst && styles.countFirst)}>
-          {formatNumber(entry.count)}
-        </span>
+        <Tooltip
+          position="top"
+          align="end"
+          content={`${formatNumber(entry.count)} servers running ${entry.key} (${percent}% of fleet).`}
+        >
+          <span className={cn(styles.count, isFirst && styles.countFirst)}>
+            {formatNumber(entry.count)}
+          </span>
+        </Tooltip>
       </div>
       <div
         className={cn(styles.track, isFirst && styles.trackFirst)}

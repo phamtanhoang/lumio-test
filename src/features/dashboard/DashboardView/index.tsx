@@ -69,9 +69,21 @@ export function DashboardView() {
       />
 
       <div className={styles.breakdowns}>
-        <TopBreakdown title="Top operating systems" entries={stats.topOS} />
-        <TopBreakdown title="Top platforms" entries={stats.topPlatform} />
-        <TopBreakdown title="Top architectures" entries={stats.topArch} />
+        <TopBreakdown
+          title="Top operating systems"
+          description="Operating systems ranked by number of servers in the selected window."
+          entries={stats.topOS}
+        />
+        <TopBreakdown
+          title="Top platforms"
+          description="Web platforms (Nginx, Apache…) ranked by usage in the selected window."
+          entries={stats.topPlatform}
+        />
+        <TopBreakdown
+          title="Top architectures"
+          description="CPU architectures (x64, arm64…) ranked by server count in the selected window."
+          entries={stats.topArch}
+        />
       </div>
 
       <ActivityFeed events={filteredActivities} />

@@ -1,6 +1,9 @@
 .card {
   @apply flex flex-col;
 }
+.titleRow {
+  @apply flex items-center gap-2;
+}
 .content {
   @apply flex-1;
 }

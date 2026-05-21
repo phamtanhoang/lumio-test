@@ -1,5 +1,27 @@
 .card {
-  @apply relative flex flex-col overflow-hidden p-3.5 sm:p-5;
+  /* `overflow-visible` so the tooltip popover can escape the card boundary.
+     Rounded corners on background still clip without `overflow-hidden`. */
+  @apply relative flex flex-col p-3.5 sm:p-5;
+}
+/* Tonal gradient backgrounds give each card a distinct accent so the four
+   metrics feel less uniform — addresses "giao diện đơn điệu" feedback. */
+.cardPrimary {
+  @apply bg-gradient-to-br from-primary/[0.07] via-card to-card;
+}
+.cardSuccess {
+  @apply bg-gradient-to-br from-success/[0.07] via-card to-card;
+}
+.cardDanger {
+  @apply bg-gradient-to-br from-danger/[0.07] via-card to-card;
+}
+.cardBeta {
+  @apply bg-gradient-to-br from-fuchsia-200/40 via-card to-card;
+}
+.infoBtn {
+  @apply inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground;
+}
+.infoIcon {
+  @apply h-3 w-3;
 }
 .head {
   @apply flex items-start justify-between gap-2 sm:gap-3;

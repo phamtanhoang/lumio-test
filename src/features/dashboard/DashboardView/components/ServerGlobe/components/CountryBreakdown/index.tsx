@@ -1,11 +1,13 @@
 "use client";
 
-import { ArrowUpRight, ChevronUp, Info } from "lucide-react";
+import { ArrowUpRight, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { memo, useState } from "react";
 
+import { InfoIcon } from "@/components/ui/InfoIcon";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { flagUrl } from "@/lib/config";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatNumber } from "@/lib/format";
 import type { CountryEntry } from "@/lib/topCountries";
 
 import styles from "./styles.module.css";
@@ -29,14 +31,14 @@ export const CountryBreakdown = memo(function CountryBreakdown({
     <div className={styles.root}>
       <div>
         <div className={styles.numberRow}>
-          <p className={styles.number}>{formatCompactNumber(total)}</p>
-          <button
-            type="button"
-            aria-label="About this metric"
-            className={styles.infoBtn}
-          >
-            <Info className={styles.iconSm} aria-hidden />
-          </button>
+          <p className={styles.number}>
+            <Tooltip
+              content={`${formatNumber(total)} servers across ${entries.length} ${entries.length === 1 ? "country" : "countries"} in the selected window.`}
+            >
+              <span>{formatCompactNumber(total)}</span>
+            </Tooltip>
+          </p>
+          <InfoIcon content="Total servers across all countries in the selected window. The list below ranks them by share." />
         </div>
         <p className={styles.subtitle}>Global servers worldwide</p>
       </div>
@@ -58,9 +60,15 @@ export const CountryBreakdown = memo(function CountryBreakdown({
                 </span>
                 <span className={styles.country}>{entry.country}</span>
               </span>
-              <span className={styles.percent}>
-                {Math.round(entry.share * 100)}%
-              </span>
+              <Tooltip
+                position="top"
+                align="end"
+                content={`${formatNumber(entry.count)} of ${formatNumber(total)} servers (${Math.round(entry.share * 100)}%) in ${entry.country}.`}
+              >
+                <span className={styles.percent}>
+                  {Math.round(entry.share * 100)}%
+                </span>
+              </Tooltip>
             </div>
             <div
               className={styles.track}
